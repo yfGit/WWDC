@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6D-Ti-9yp">
+                                <rect key="frame" x="202.5" y="77" width="70" height="40"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Pause"/>
+                                <state key="selected" title="Continue"/>
+                                <connections>
+                                    <action selector="pauseAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s6g-Oy-1uF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndO-QQ-1Lh">
+                                <rect key="frame" x="102.5" y="77" width="70" height="40"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="H8g-x1-SAU"/>
+                                    <constraint firstAttribute="width" constant="70" id="tFJ-BP-1cO"/>
+                                </constraints>
+                                <state key="normal" title="Start"/>
+                                <state key="selected" title="Stop"/>
+                                <connections>
+                                    <action selector="startSpeckAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tlh-LO-jW1"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Voice Text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mck-b2-BS5">
+                                <rect key="frame" x="144" y="180" width="87.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsu-lm-maQ">
+                                <rect key="frame" x="110.5" y="250" width="153" height="40"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="oFA-sj-mqE"/>
+                                </constraints>
+                                <state key="normal" title="Change Voice &amp;&amp; Text"/>
+                                <connections>
+                                    <action selector="changeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jYW-C3-K9G"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Xsu-lm-maQ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="COQ-L4-y7y"/>
+                            <constraint firstItem="Mck-b2-BS5" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="GIG-sF-P8u"/>
+                            <constraint firstItem="Xsu-lm-maQ" firstAttribute="top" secondItem="Mck-b2-BS5" secondAttribute="bottom" constant="40" id="GlW-az-q7H"/>
+                            <constraint firstItem="ndO-QQ-1Lh" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" constant="-50" id="Jy2-YC-2tf"/>
+                            <constraint firstItem="A6D-Ti-9yp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="57" id="QC0-M0-XKh"/>
+                            <constraint firstItem="Mck-b2-BS5" firstAttribute="top" secondItem="A6D-Ti-9yp" secondAttribute="bottom" constant="63" id="RTK-NL-FWN"/>
+                            <constraint firstItem="ndO-QQ-1Lh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="57" id="Sbz-75-lkB"/>
+                            <constraint firstItem="A6D-Ti-9yp" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" constant="50" id="XK8-3u-bSC"/>
+                            <constraint firstItem="A6D-Ti-9yp" firstAttribute="height" secondItem="ndO-QQ-1Lh" secondAttribute="height" id="fsh-Un-GXL"/>
+                            <constraint firstItem="A6D-Ti-9yp" firstAttribute="width" secondItem="ndO-QQ-1Lh" secondAttribute="width" id="mHH-lf-Jjb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="pauseBtn" destination="A6D-Ti-9yp" id="vdP-yK-PfN"/>
+                        <outlet property="startBtn" destination="ndO-QQ-1Lh" id="NSn-H2-SCb"/>
+                        <outlet property="text" destination="Mck-b2-BS5" id="41s-D1-fd8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
