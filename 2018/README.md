@@ -1,18 +1,23 @@
 # SessionList
 
+    ![WWDC App](https://github.com/insidegui/WWDC)  
     https://developer.apple.com/videos/play/wwdc2018/sessionId
+
+## ToDoList
+
+  225
 
 ## 有代码
 
-### App Store and Distribution
+App Store and Distribution
 
 * 236: AVSpeechSynthesizer: Making iOS Talk
 
-### Developer Tools
+Developer Tools
 
-### Featured
+Featured
 
-### Frameworks
+Frameworks
 
 * 233: Adding Delight to your iOS App  
   * External Display Support: 外接显示器, 改变iPhone的默认行为, 提高用户体验  
@@ -21,18 +26,23 @@
   * Smooth Scrolling  
   * Debugging like a Pro
 
-* 204: Automatic Strong Passwords and Security Code AutoFill
+* 225: A Tour of UICollectionView  
+  * FlowLayout  
+  * MosaicLayout  
+  * 优化layout查找: 二分查找 **瀑布流移动动画时 maxY方式 判断会有问题**
+  * 处理批量动画
+  * 瀑布流和移动动画 (非session)
 
-### Graphics and Games
+Graphics and Games
 
-### Media
+Media
 
 ## 无代码
 
-### App Store and Distribution-
+App Store and Distribution
 
 * 302: What's New in Managing Apple Devices  
-  * Classroom; Apple Business Manager;
+  * Classroom; Apple Business Manager
   * Verify your server supports ATS using: nscurl --ats-diagnostics URL
 
 * 304: What's New in Search Ads
@@ -46,14 +56,14 @@
 
 * 721: Implementing AutoFill Credential Provider Extensions 定制密码自动填充
 
-### Developer Tools-
+Developer Tools
 
-### Featured-
+Featured
 
-### Frameworks-
+Frameworks
 
-* 803: Designing Fluid Interfaces 流畅界面设计  +++建议观看
-* 806: Designing Notifications
+* 204: Automatic Strong Passwords and Security Code AutoFill
+
 * 234: What’s New in Safari and WebKit  
   * WKWebView Crash也不会影响你的App
   * hash对比防止使用被更改的js, css等文件
@@ -63,6 +73,10 @@
   * Safari Apple Pay API
   * &lt;img&gt; 新增 AR View
 
-### Graphics and Games-
+* 803: Designing Fluid Interfaces 流畅界面设计  +++建议观看
 
-### Media-
+* 806: Designing Notifications
+
+Graphics and Games
+
+Media
