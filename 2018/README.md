@@ -1,13 +1,10 @@
 # SessionList
 
-    ![WWDC App](https://github.com/insidegui/WWDC)  
-    https://developer.apple.com/videos/play/wwdc2018/sessionId
-
 ## ToDoList
 
-  225
+* [225](https://github.com/yfGit/WWDC/blob/cb5880e5e76548fc29d20a99810b8ad9daa471ab/2018/225/225/Content/ToDoList.h#L15)
 
-## 有代码
+## Demo
 
 App Store and Distribution
 
@@ -37,7 +34,7 @@ Graphics and Games
 
 Media
 
-## 无代码
+## No Demo
 
 App Store and Distribution
 
@@ -73,7 +70,13 @@ Frameworks
   * Safari Apple Pay API
   * &lt;img&gt; 新增 AR View
 
-* 803: Designing Fluid Interfaces 流畅界面设计  +++建议观看
+* 235 UIKit: Apps for Every Size and Shape  +++
+  * [SafeArea适配](https://juejin.im/post/5b1a9e32518825137e13ac3e)
+  * [iPhoneX尺寸](https://medium.com/uxabc/iphone-x-ui-design-specs-696fd4f262b6)
+
+* 802: Intentional Design 意图设计
+
+* 803: Designing Fluid Interfaces 流畅界面设计  +++ 建议观看
 
 * 806: Designing Notifications
 

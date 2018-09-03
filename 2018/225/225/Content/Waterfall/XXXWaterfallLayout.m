@@ -334,8 +334,7 @@
         NSIndexPath *targetIndex = [self.collectionView indexPathForItemAtPoint:position];
         if (targetIndex.section != previousIndexPath.section) {
             return previousIndexPath;
-            
-            return self.initiatoryIndexPath; // tips: 哪来回哪去  不同section会卡住(跨一个屏幕, 可交换时这时会crash. 是不是同一个原因)
+//            return self.initiatoryIndexPath; // tips: 哪来回哪去  不同section会卡住(跨一个屏幕, 可交换时这时会crash. 是不是同一个原因)
         }
     }
 
