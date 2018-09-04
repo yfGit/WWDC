@@ -7,7 +7,7 @@
 
 > 下载
 
-[GitHub 单个目录下载 Sparse checkout (推荐)](https://www.peterdavehello.org/2015/05/use-git-sparse-checkout-and-shallow-clone-pull-to-increase-work-efficient/)  
+[GitHub 单个目录下载 Sparse checkout](https://www.peterdavehello.org/2015/05/use-git-sparse-checkout-and-shallow-clone-pull-to-increase-work-efficient/)  
 [GitHub 单个目录下载 Chrome插件](https://chrome.google.com/webstore/detail/gitzip-for-github/ffabmkklhbepgcgfonabamgnfafbdlkn)  
 [GitHub 单个目录下载 链接](https://minhaskamal.github.io/DownGit/#/home)
 

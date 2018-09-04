@@ -34,7 +34,7 @@ Graphics and Games
 
 Media
 
-## No Demo
+## Without Demo
 
 App Store and Distribution
 
