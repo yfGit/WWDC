@@ -37,7 +37,13 @@
 
 #pragma mark - Drag
 
-// 一般实现 itemsForBeginningSession:   previewForLiftingItem: 两个方法就可以了
+ /* 一般实现
+    itemsForBeginningSession:
+    previewForLiftingItem:
+    itemsForAddingToSession: withTouchAtPoint:
+  
+    三个方法就可以了
+ */
 
 /**
 
@@ -65,7 +71,7 @@
 }
 
 /**
- 预览视图: 默认为整个视图的快照 (哪怕你是拖拽了其中一个view, 也会显示全部)
+ 预览视图: 默认为整个视图的快照 (哪怕你是拖拽了其中一个view, 也会显示全部)  或  使用 dragItem.previewProvider
  
  提供:
     1. 拖拽预览部分
@@ -78,7 +84,7 @@
     NSUInteger idx = [item.localObject intValue];
     
     // 最简单的
-    return [[UITargetedDragPreview alloc] initWithView:self.dragViews[idx]];
+//    return [[UITargetedDragPreview alloc] initWithView:self.dragViews[idx]];
     
     
     
@@ -100,7 +106,8 @@
      自定义 view 必须是已经显示在窗口上的
      */
     UIDragPreviewParameters *param = [[UIDragPreviewParameters alloc] init];
-    UITargetedDragPreview *preview = [[UITargetedDragPreview alloc] initWithView:imgView parameters:param target:target];
+//    param.visiblePath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 50, 50)];  // collectionView 默认是以cell为view
+    UITargetedDragPreview *preview = [[UITargetedDragPreview alloc] initWithView:self.dragViews[idx] parameters:param target:target];
     
     return preview;
     

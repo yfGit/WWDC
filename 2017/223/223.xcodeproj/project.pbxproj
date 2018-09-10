@@ -14,6 +14,15 @@
 		BF326BE4213F6FC700B60349 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF326BE2213F6FC700B60349 /* LaunchScreen.storyboard */; };
 		BF326BE7213F6FC700B60349 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF326BE6213F6FC700B60349 /* main.m */; };
 		BF326BF1213F6FC700B60349 /* _23Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF326BF0213F6FC700B60349 /* _23Tests.m */; };
+		BFAB55C12142128800B6FAA5 /* AlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAB55C02142128800B6FAA5 /* AlbumCell.m */; };
+		BFAB55C42142133600B6FAA5 /* AlbumTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAB55C32142133600B6FAA5 /* AlbumTableController.m */; };
+		BFAB55C821421B3A00B6FAA5 /* PhotoLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAB55C721421B3A00B6FAA5 /* PhotoLibrary.m */; };
+		BFAB55CB21421B4600B6FAA5 /* PhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAB55CA21421B4600B6FAA5 /* PhotoAlbum.m */; };
+		BFAB55CE21421B4D00B6FAA5 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAB55CD21421B4D00B6FAA5 /* Photo.m */; };
+		BFAB55D121424D7D00B6FAA5 /* PhotoCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAB55D021424D7D00B6FAA5 /* PhotoCollectionController.m */; };
+		BFAB55D421424DBE00B6FAA5 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAB55D321424DBE00B6FAA5 /* PhotoCell.m */; };
+		BFAB55D821456BCD00B6FAA5 /* UIImageView+ClippingRect.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAB55D721456BCD00B6FAA5 /* UIImageView+ClippingRect.m */; };
+		BFAB55DB2146490800B6FAA5 /* PlaceholderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAB55DA2146490800B6FAA5 /* PlaceholderCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +49,25 @@
 		BF326BEC213F6FC700B60349 /* 223Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 223Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF326BF0213F6FC700B60349 /* _23Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _23Tests.m; sourceTree = "<group>"; };
 		BF326BF2213F6FC700B60349 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFAB55BF2142128800B6FAA5 /* AlbumCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumCell.h; sourceTree = "<group>"; };
+		BFAB55C02142128800B6FAA5 /* AlbumCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumCell.m; sourceTree = "<group>"; };
+		BFAB55C22142133600B6FAA5 /* AlbumTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumTableController.h; sourceTree = "<group>"; };
+		BFAB55C32142133600B6FAA5 /* AlbumTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumTableController.m; sourceTree = "<group>"; };
+		BFAB55C621421B3A00B6FAA5 /* PhotoLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoLibrary.h; sourceTree = "<group>"; };
+		BFAB55C721421B3A00B6FAA5 /* PhotoLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoLibrary.m; sourceTree = "<group>"; };
+		BFAB55C921421B4600B6FAA5 /* PhotoAlbum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAlbum.h; sourceTree = "<group>"; };
+		BFAB55CA21421B4600B6FAA5 /* PhotoAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAlbum.m; sourceTree = "<group>"; };
+		BFAB55CC21421B4D00B6FAA5 /* Photo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		BFAB55CD21421B4D00B6FAA5 /* Photo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		BFAB55CF21424D7D00B6FAA5 /* PhotoCollectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionController.h; sourceTree = "<group>"; };
+		BFAB55D021424D7D00B6FAA5 /* PhotoCollectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionController.m; sourceTree = "<group>"; };
+		BFAB55D221424DBE00B6FAA5 /* PhotoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
+		BFAB55D321424DBE00B6FAA5 /* PhotoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
+		BFAB55D52142565100B6FAA5 /* ToDoList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoList.h; sourceTree = "<group>"; };
+		BFAB55D621456BCD00B6FAA5 /* UIImageView+ClippingRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ClippingRect.h"; sourceTree = "<group>"; };
+		BFAB55D721456BCD00B6FAA5 /* UIImageView+ClippingRect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ClippingRect.m"; sourceTree = "<group>"; };
+		BFAB55D92146490800B6FAA5 /* PlaceholderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceholderCell.h; sourceTree = "<group>"; };
+		BFAB55DA2146490800B6FAA5 /* PlaceholderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceholderCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,12 +109,13 @@
 		BF326BD6213F6FC700B60349 /* 223 */ = {
 			isa = PBXGroup;
 			children = (
+				BF326BE0213F6FC700B60349 /* Assets.xcassets */,
+				BF326BDD213F6FC700B60349 /* Main.storyboard */,
+				BFAB55BD2142114400B6FAA5 /* Content */,
 				BF326BD7213F6FC700B60349 /* AppDelegate.h */,
 				BF326BD8213F6FC700B60349 /* AppDelegate.m */,
 				BF326BDA213F6FC700B60349 /* ViewController.h */,
 				BF326BDB213F6FC700B60349 /* ViewController.m */,
-				BF326BDD213F6FC700B60349 /* Main.storyboard */,
-				BF326BE0213F6FC700B60349 /* Assets.xcassets */,
 				BF326BE2213F6FC700B60349 /* LaunchScreen.storyboard */,
 				BF326BE5213F6FC700B60349 /* Info.plist */,
 				BF326BE6213F6FC700B60349 /* main.m */,
@@ -101,6 +130,48 @@
 				BF326BF2213F6FC700B60349 /* Info.plist */,
 			);
 			path = 223Tests;
+			sourceTree = "<group>";
+		};
+		BFAB55BD2142114400B6FAA5 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				BFAB55D52142565100B6FAA5 /* ToDoList.h */,
+				BFAB55C22142133600B6FAA5 /* AlbumTableController.h */,
+				BFAB55C32142133600B6FAA5 /* AlbumTableController.m */,
+				BFAB55CF21424D7D00B6FAA5 /* PhotoCollectionController.h */,
+				BFAB55D021424D7D00B6FAA5 /* PhotoCollectionController.m */,
+				BFAB55BE2142114F00B6FAA5 /* Cell */,
+				BFAB55C52142184E00B6FAA5 /* Data */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		BFAB55BE2142114F00B6FAA5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BFAB55BF2142128800B6FAA5 /* AlbumCell.h */,
+				BFAB55C02142128800B6FAA5 /* AlbumCell.m */,
+				BFAB55D221424DBE00B6FAA5 /* PhotoCell.h */,
+				BFAB55D321424DBE00B6FAA5 /* PhotoCell.m */,
+				BFAB55D92146490800B6FAA5 /* PlaceholderCell.h */,
+				BFAB55DA2146490800B6FAA5 /* PlaceholderCell.m */,
+				BFAB55D621456BCD00B6FAA5 /* UIImageView+ClippingRect.h */,
+				BFAB55D721456BCD00B6FAA5 /* UIImageView+ClippingRect.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BFAB55C52142184E00B6FAA5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BFAB55C621421B3A00B6FAA5 /* PhotoLibrary.h */,
+				BFAB55C721421B3A00B6FAA5 /* PhotoLibrary.m */,
+				BFAB55C921421B4600B6FAA5 /* PhotoAlbum.h */,
+				BFAB55CA21421B4600B6FAA5 /* PhotoAlbum.m */,
+				BFAB55CC21421B4D00B6FAA5 /* Photo.h */,
+				BFAB55CD21421B4D00B6FAA5 /* Photo.m */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,9 +274,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFAB55C42142133600B6FAA5 /* AlbumTableController.m in Sources */,
 				BF326BDC213F6FC700B60349 /* ViewController.m in Sources */,
+				BFAB55D821456BCD00B6FAA5 /* UIImageView+ClippingRect.m in Sources */,
+				BFAB55D121424D7D00B6FAA5 /* PhotoCollectionController.m in Sources */,
+				BFAB55C821421B3A00B6FAA5 /* PhotoLibrary.m in Sources */,
 				BF326BE7213F6FC700B60349 /* main.m in Sources */,
+				BFAB55CE21421B4D00B6FAA5 /* Photo.m in Sources */,
+				BFAB55D421424DBE00B6FAA5 /* PhotoCell.m in Sources */,
 				BF326BD9213F6FC700B60349 /* AppDelegate.m in Sources */,
+				BFAB55C12142128800B6FAA5 /* AlbumCell.m in Sources */,
+				BFAB55CB21421B4600B6FAA5 /* PhotoAlbum.m in Sources */,
+				BFAB55DB2146490800B6FAA5 /* PlaceholderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,12 +442,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 48LTUYWZYX;
 				INFOPLIST_FILE = 223/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Freedom.-23";
+				PRODUCT_BUNDLE_IDENTIFIER = "Freedom.-223";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -378,12 +459,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 48LTUYWZYX;
 				INFOPLIST_FILE = 223/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Freedom.-23";
+				PRODUCT_BUNDLE_IDENTIFIER = "Freedom.-223";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
