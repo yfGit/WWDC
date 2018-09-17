@@ -13,9 +13,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    
-    
 }
 
 - (void)configureData:(PhotoAlbum *)data indexPath:(NSIndexPath *)indexPath

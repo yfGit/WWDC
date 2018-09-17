@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ytc-2s-l7a">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RLS-yq-oSe">
-                                <rect key="frame" x="40" y="170" width="71.5" height="93"/>
+                                <rect key="frame" x="40" y="214" width="71.5" height="93"/>
                                 <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RLS-yq-oSe" secondAttribute="height" multiplier="1:1.3" id="fbx-hz-Qdp"/>
@@ -30,14 +30,14 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="T5e-zc-O88">
-                                <rect key="frame" x="263.5" y="303" width="71.5" height="93"/>
+                                <rect key="frame" x="263.5" y="347" width="71.5" height="93"/>
                                 <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="aaa5">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4Zh-Tj-foh" customClass="de">
-                                <rect key="frame" x="40" y="303" width="71.5" height="93"/>
+                                <rect key="frame" x="40" y="347" width="71.5" height="93"/>
                                 <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Debug">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -47,14 +47,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="j8n-xi-xQU">
-                                <rect key="frame" x="263.5" y="170" width="71.5" height="93"/>
+                                <rect key="frame" x="263.5" y="214" width="71.5" height="93"/>
                                 <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Handoff">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bip-eC-biy">
-                                <rect key="frame" x="151.5" y="170" width="72" height="93"/>
+                                <rect key="frame" x="151.5" y="214" width="72" height="93"/>
                                 <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Layout-Driven UI">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -64,7 +64,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="OB4-xk-hpP">
-                                <rect key="frame" x="151.5" y="303" width="72" height="93"/>
+                                <rect key="frame" x="151.5" y="347" width="72" height="93"/>
                                 <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="aaa4">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -100,9 +100,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="IE3-ZO-5Jj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="670" y="12"/>
         </scene>
         <!--Debug View Controller-->
         <scene sceneID="Ape-zP-hOl">
@@ -196,7 +198,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cool" translatesAutoresizingMaskIntoConstraints="NO" id="taR-a5-LtR">
-                                <rect key="frame" x="87.5" y="243.5" width="200" height="200"/>
+                                <rect key="frame" x="87.5" y="265.5" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="5vS-TD-BcT"/>
                                     <constraint firstAttribute="width" constant="200" id="bNM-Gt-8kO"/>
@@ -233,7 +235,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9pU-AP-gde" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1692" y="-208"/>
+            <point key="canvasLocation" x="2631.1999999999998" y="-208.24587706146929"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="p55-me-O8i">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ytc-2s-l7a" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nAL-sg-Brd">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="voS-9Z-j0W"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aEY-hS-r5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-249" y="51"/>
         </scene>
     </scenes>
     <resources>

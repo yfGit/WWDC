@@ -12,7 +12,7 @@
 #import "WaterfallHeaderView.h"
 #import "WaterfallFooterView.h"
 
-@interface WaterfallController ()<UICollectionViewDelegate, UICollectionViewDataSource, XXXWaterfallLayoutDelegate>
+@interface WaterfallController ()<UICollectionViewDelegate, UICollectionViewDataSource, XXXWaterfallLayoutDelegate, UICollectionViewDataSourcePrefetching>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -64,6 +64,11 @@
     
     view.delegate = self;
     view.dataSource = self;
+
+    if (@available(iOS 10.0, *)) {
+        view.prefetchDataSource = self;
+    }
+
     
     [view registerNib:[UINib nibWithNibName:WaterfallCell.description bundle:nil] forCellWithReuseIdentifier:WaterfallCell.identifier];
     [view registerNib:[UINib nibWithNibName:WaterfallHeaderView.description bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WaterfallHeaderView.identifier];
@@ -133,6 +138,23 @@
     }
 }
 
+#pragma mark - Prefetching
+
+
+- (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_AVAILABLE_IOS(10_0)
+{
+    NSLog(@"%s - %@, %@", __func__, indexPaths, [NSThread currentThread]);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@">>> %@ %@", indexPath, [NSThread currentThread]);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView cancelPrefetchingForItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths  NS_AVAILABLE_IOS(10_0)
+{
+    NSLog(@"cancel ");
+}
 #pragma mark - CollectionView Delegate DataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -150,7 +172,7 @@
 {
     WaterfallCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:WaterfallCell.identifier forIndexPath:indexPath];
     [cell configData:self.dataSource[indexPath.section][indexPath.item] indexPath:indexPath];
-    
+    NSLog(@"%s - %@  %@", __func__, indexPath, [NSThread currentThread]);
     return cell;
 }
 
@@ -195,6 +217,7 @@
 }
 
 #pragma mark - Layout Delegate
+
 //- (NSUInteger)waterfallLayout:(XXXWaterfallLayout *)layout numberOfItemsInSection:(NSUInteger)section
 //{
 //    return [self.dataSource[section] count];

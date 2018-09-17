@@ -166,10 +166,10 @@
         UIImage *img = self.dragImages[index];
         NSItemProvider *itemProvider = [[NSItemProvider alloc] initWithObject:img]; // 用于传输
         UIDragItem *item = [[UIDragItem alloc] initWithItemProvider:itemProvider];
-
+        item.localObject = YES; // tips: makes it faster to drag and drop content within the same app 
         // tips: 附加信息, 仅对 drag 的 app 有用 (如 Destation获取为nil)
         item.localObject = @(index);
-
+        
         return @[item];
     }else {
         return nil;

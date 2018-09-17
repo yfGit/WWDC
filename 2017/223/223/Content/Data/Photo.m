@@ -7,6 +7,7 @@
 //
 
 #import "Photo.h"
+#import "UIImage+XXCategory.h"
 
 @interface Photo () {
     NSItemProvider *_itemProvider;
@@ -16,15 +17,29 @@
 
 @implementation Photo
 
-
+static CGFloat max = 0;
+static CGFloat min = CGFLOAT_MAX;
 - (instancetype)initWithImage:(UIImage *)image
 {
     if (self = [self init]) {
         _identifier = [NSUUID UUID].UUIDString;
         _image = image;
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            self.thumbnail = [self _generateThumbnaiForImage:image thumbnailSize:CGSizeMake(50, 50)];
-        });
+//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSTimeInterval befor = CACurrentMediaTime();
+        CGSize size = CGSizeMake(200, 200);
+        self.thumbnail = [image xx_thumbnailImageWithSize:size];
+//        self.thumbnail = [image xx_generateThumbnaiWithSize:size isFill:YES];
+        
+        NSTimeInterval after = CACurrentMediaTime();
+        NSTimeInterval interval = after - befor;
+        if (interval > max) {
+            max = interval;
+        }
+        if (interval < min) {
+            min = interval;
+        }
+        NSLog(@"%f - %f", min, max);
+//        });
     }
     return self;
 }

@@ -32,7 +32,11 @@ static int callCount = 0;
     self.itemSize = CGSizeMake(cellWidth, 70.0);
     
     self.sectionInset = UIEdgeInsetsMake(self.minimumInteritemSpacing, 0, 0, 0);
-    self.sectionInsetReference = UICollectionViewFlowLayoutSectionInsetFromSafeArea;
+    if (@available(iOS 11.0, *)) {
+        self.sectionInsetReference = UICollectionViewFlowLayoutSectionInsetFromSafeArea;
+    } else {
+        // Fallback on earlier versions
+    }
 }
 
 

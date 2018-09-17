@@ -22,6 +22,10 @@ https://www.jianshu.com/p/92d21cc6de99
  8. data transfer
  
  7. paste
+ 
+ -. item.localObject = YES; // tips: makes it faster to drag and drop content within the same app
+        https://developer.apple.com/documentation/uikit/drag_and_drop/data_delivery_with_drag_and_drop
+        demo 上这么说的......
  */
 
 #endif /* ToDoList_h */

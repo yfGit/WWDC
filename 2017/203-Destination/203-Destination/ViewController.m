@@ -119,7 +119,7 @@
     // session itmes 任何一个符合就YES
     BOOL result = [session canLoadObjectsOfClass:UIImage.class];
     
-    // 更具体, 对 PNG 感兴趣, session itmes 任何一个符合就YES, 但是session和dash上说的都是 only.
+    // 更具体, 对 PNG 感兴趣, session itmes 任何一个符合就YES, 但是session和dash上说的都是 only. UTCoreTypes.h
 //    result = [session hasItemsConformingToTypeIdentifiers:@[(NSString *)kUTTypePNG]];
     return result;
 }

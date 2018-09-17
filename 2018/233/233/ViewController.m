@@ -24,8 +24,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenConnect:) name:UIScreenDidConnectNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenDisconnect:) name:UIScreenDidDisconnectNotification object:nil];
-    
-    
+
 }
 
 - (void)screenConnect:(NSNotificationCenter *)n

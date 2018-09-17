@@ -7,17 +7,22 @@
 //
 
 #import "UIImageView+ClippingRect.h"
+#import "UIImage+XXCategory.h"
 
 @implementation UIImageView (ClippingRect)
 
 - (CGRect)contentClippingRect
 {
+    NSLog(@"%@", NSStringFromCGSize(self.image.size));
+//    return self.image.renderRect;
+    
     if (self.contentMode != UIViewContentModeScaleAspectFit || self.image == nil) return self.bounds;
     
-    // UIViewContentModeScaleAspectFit 是 同时同等放大, 到一边到边界为止
+    // UIViewContentModeScaleAspectFit  是 同时同等放大缩小, 到全包括为止
+    // UIViewContentModeScaleAspectFill 是 同时同等放大, 到一边到边界为止
     
-    CGFloat imageWidth = self.image.size.width;
-    CGFloat imageHeight = self.image.size.height;
+    CGFloat imageWidth = self.image.renderRect.size.width;
+    CGFloat imageHeight = self.image.renderRect.size.height;
     
     CGFloat scale = 1;
     if (imageWidth > imageHeight) {
