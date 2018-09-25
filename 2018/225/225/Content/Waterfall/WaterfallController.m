@@ -153,7 +153,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView cancelPrefetchingForItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths  NS_AVAILABLE_IOS(10_0)
 {
-    NSLog(@"cancel ");
+    NSLog(@"cancel %@", indexPaths);
 }
 #pragma mark - CollectionView Delegate DataSource
 

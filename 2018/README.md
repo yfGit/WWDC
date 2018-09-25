@@ -1,9 +1,5 @@
 # SessionList
 
-## ToDoList
-
-* [225](https://github.com/yfGit/WWDC/blob/cb5880e5e76548fc29d20a99810b8ad9daa471ab/2018/225/225/Content/ToDoList.h#L15)
-
 ## Demo
 
 App Store and Distribution
@@ -55,6 +51,23 @@ App Store and Distribution
 
 Developer Tools
 
+* 227 Optimizing App Assets  
+  * Compression:  减少10%-20%容量; 自动图像打包
+  * Design and Production: slicing 矢量图
+  * Cataloging: 支持 namespaces
+  * Deployment: 性能矩阵 Metal/内存; NSDataAsset; Sprite atlases  
+
+* 404 New Localization Workflows in Xcode 10  
+  * 本地化工作流程, 本地目录化, xliff, fr.scloc; siri
+
+* 407 Practical Approaches to Great App Performance    +++++++++++++++建议观看
+  * 性能优化理论
+    * 性能问题类型
+    * 性能测试
+    * Time Profiler: Xcode tag案例; [2016-418: Using Time Profiler in Instruments](https://developer.apple.com/videos/play/wwdc2016/418/)
+    * 通用的解决方案
+  * Photos性能优化
+
 Featured
 
 Frameworks
@@ -84,6 +97,8 @@ Graphics and Games
 
 Media
 
-* 219 Image and Graphics Best Practices   +++++++++++++++++++++++++++建议观看多次  
+* 219 Image and Graphics Best Practices   +++++++++++++++++++++++++++建议观看
   * 缓冲区知识
+  * downsamp
   * CPU GPU 技巧
+  * [分析](https://techblog.toutiao.com/2018/06/19/untitled-42/)
