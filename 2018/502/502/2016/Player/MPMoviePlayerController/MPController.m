@@ -37,7 +37,7 @@
 }
 
 - (IBAction)showAction:(UIButton *)sender {
-    // crash 此控制器不是视图控制器, 不能直接弹出  [MPMoviePlayerController _defaultAnimationController]
+    // crash 此控制器不是:UIViewController, 不能直接弹出  [MPMoviePlayerController _defaultAnimationController]
     [self presentViewController:self.moviePC animated:YES completion:nil];
 }
 

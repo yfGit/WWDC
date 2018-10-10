@@ -298,7 +298,7 @@
     
     float rate = self.player.rate;
     float timeRate = CMTimebaseGetRate(self.player.currentItem.timebase);
-    self.rateLabel.text = [NSString stringWithFormat:@"%.2f", rate];
+    self.rateLabel.text = [NSString stringWithFormat:@"aaaaaa%.2f", rate];
     self.timebaseRateLabel.text = [NSString stringWithFormat:@"%.2f", timeRate];
     
     float currentTime = self.player.currentItem.currentTime.value / self.player.currentItem.currentTime.timescale;

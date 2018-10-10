@@ -20,7 +20,7 @@
 		BFD06034216D98DD00284432 /* AVPlayerControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD0601E216D98DD00284432 /* AVPlayerControllers.m */; };
 		BFD06035216D98DD00284432 /* MPController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD06021216D98DD00284432 /* MPController.m */; };
 		BFD06036216D98DD00284432 /* AVPController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD06025216D98DD00284432 /* AVPController.m */; };
-		BFD06037216D98DD00284432 /* PlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD06027216D98DD00284432 /* PlayerController.m */; };
+		BFD06037216D98DD00284432 /* PlayerDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD06027216D98DD00284432 /* PlayerDemoController.m */; };
 		BFD06039216D98DD00284432 /* ShowPropertyController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD06029216D98DD00284432 /* ShowPropertyController.m */; };
 		BFD0603A216D98DD00284432 /* AVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD0602B216D98DD00284432 /* AVPlayerView.m */; };
 		BFD0603C216D98DD00284432 /* ToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD06030216D98DD00284432 /* ToolView.m */; };
@@ -63,12 +63,12 @@
 		BFD06022216D98DD00284432 /* MPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPController.h; sourceTree = "<group>"; };
 		BFD06024216D98DD00284432 /* AVPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPController.h; sourceTree = "<group>"; };
 		BFD06025216D98DD00284432 /* AVPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPController.m; sourceTree = "<group>"; };
-		BFD06027216D98DD00284432 /* PlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerController.m; sourceTree = "<group>"; };
+		BFD06027216D98DD00284432 /* PlayerDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerDemoController.m; sourceTree = "<group>"; };
 		BFD06029216D98DD00284432 /* ShowPropertyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPropertyController.m; sourceTree = "<group>"; };
 		BFD0602A216D98DD00284432 /* AVPlayerView_Xib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerView_Xib.h; sourceTree = "<group>"; };
 		BFD0602B216D98DD00284432 /* AVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerView.m; sourceTree = "<group>"; };
 		BFD0602C216D98DD00284432 /* ToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolView.h; sourceTree = "<group>"; };
-		BFD0602D216D98DD00284432 /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
+		BFD0602D216D98DD00284432 /* PlayerDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerDemoController.h; sourceTree = "<group>"; };
 		BFD0602E216D98DD00284432 /* ShowPropertyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPropertyController.h; sourceTree = "<group>"; };
 		BFD06030216D98DD00284432 /* ToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolView.m; sourceTree = "<group>"; };
 		BFD06031216D98DD00284432 /* AVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerView.h; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 		BFD06010216D94D500284432 /* 2016 */ = {
 			isa = PBXGroup;
 			children = (
-				BFD06019216D98DD00284432 /* Displayer */,
+				BFD06019216D98DD00284432 /* Player */,
 			);
 			path = 2016;
 			sourceTree = "<group>";
@@ -165,16 +165,16 @@
 			path = YYFPSLabel;
 			sourceTree = "<group>";
 		};
-		BFD06019216D98DD00284432 /* Displayer */ = {
+		BFD06019216D98DD00284432 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				BFD06026216D98DD00284432 /* Demo */,
 				BFD0601A216D98DD00284432 /* MPMoviePlayerViewController */,
 				BFD0601D216D98DD00284432 /* AVPlayer */,
 				BFD06020216D98DD00284432 /* MPMoviePlayerController */,
 				BFD06023216D98DD00284432 /* AVPlayerViewController_iOS9.0 */,
-				BFD06026216D98DD00284432 /* Player */,
 			);
-			path = Displayer;
+			path = Player;
 			sourceTree = "<group>";
 		};
 		BFD0601A216D98DD00284432 /* MPMoviePlayerViewController */ = {
@@ -198,8 +198,8 @@
 		BFD06020216D98DD00284432 /* MPMoviePlayerController */ = {
 			isa = PBXGroup;
 			children = (
-				BFD06021216D98DD00284432 /* MPController.m */,
 				BFD06022216D98DD00284432 /* MPController.h */,
+				BFD06021216D98DD00284432 /* MPController.m */,
 			);
 			path = MPMoviePlayerController;
 			sourceTree = "<group>";
@@ -213,13 +213,13 @@
 			path = AVPlayerViewController_iOS9.0;
 			sourceTree = "<group>";
 		};
-		BFD06026216D98DD00284432 /* Player */ = {
+		BFD06026216D98DD00284432 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
 				BFD0602C216D98DD00284432 /* ToolView.h */,
 				BFD06030216D98DD00284432 /* ToolView.m */,
-				BFD0602D216D98DD00284432 /* PlayerController.h */,
-				BFD06027216D98DD00284432 /* PlayerController.m */,
+				BFD0602D216D98DD00284432 /* PlayerDemoController.h */,
+				BFD06027216D98DD00284432 /* PlayerDemoController.m */,
 				BFD0602E216D98DD00284432 /* ShowPropertyController.h */,
 				BFD06029216D98DD00284432 /* ShowPropertyController.m */,
 				BFD0602A216D98DD00284432 /* AVPlayerView_Xib.h */,
@@ -227,7 +227,7 @@
 				BFD06031216D98DD00284432 /* AVPlayerView.h */,
 				BFD06032216D98DD00284432 /* AVPlayerView_Xib.m */,
 			);
-			path = Player;
+			path = Demo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,7 +342,7 @@
 				BFD0603C216D98DD00284432 /* ToolView.m in Sources */,
 				BFD06036216D98DD00284432 /* AVPController.m in Sources */,
 				BFD06034216D98DD00284432 /* AVPlayerControllers.m in Sources */,
-				BFD06037216D98DD00284432 /* PlayerController.m in Sources */,
+				BFD06037216D98DD00284432 /* PlayerDemoController.m in Sources */,
 				BFD06033216D98DD00284432 /* MPViewControllers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

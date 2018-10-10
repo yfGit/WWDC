@@ -6,12 +6,12 @@
 //  Copyright © 2018 SN. All rights reserved.
 //
 
-#import "PlayerController.h"
+#import "PlayerDemoController.h"
 @import AVFoundation;
 #import "ToolView.h"
 #import "AVPlayerView.h"
 
-@interface PlayerController ()
+@interface PlayerDemoController ()
 
 @property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation PlayerController
+@implementation PlayerDemoController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

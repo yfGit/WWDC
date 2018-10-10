@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PlayerController : UIViewController
+@interface PlayerDemoController : UIViewController
 
 @end
 
