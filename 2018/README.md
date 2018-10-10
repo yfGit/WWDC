@@ -30,6 +30,9 @@ Graphics and Games
 
 Media
 
+* 520: Measuring and Optimizing HLS Performance
+  * 503 WWDC 2016: Advances in AVFoundation Playback
+
 ## Without Demo
 
 App Store and Distribution
@@ -60,13 +63,23 @@ Developer Tools
 * 404 New Localization Workflows in Xcode 10  
   * 本地化工作流程, 本地目录化, xliff, fr.scloc; siri
 
-* 407 Practical Approaches to Great App Performance    +++++++++++++++建议观看
+* 407 Practical Approaches to Great App Performance    +++++++++++++++建议观看  
   * 性能优化理论
     * 性能问题类型
     * 性能测试
     * Time Profiler: Xcode tag案例; [2016-418: Using Time Profiler in Instruments](https://developer.apple.com/videos/play/wwdc2016/418/)
     * 通用的解决方案
   * Photos性能优化
+
+* 418 Source Control Workflows in Xcode  
+
+* 414 Understanding Crashes and Crash Logs ++++++++++++++++++++++
+  * Fundamentals: 概念
+  * Accessing crash logs: 符号化工具(Organizer  appstore testFlight bitcode)
+  * Analyzing Crash Logs: 分析 .crash 文件 [TN2151崩溃报告](https://developer.apple.com/library/archive/technotes/tn2151/_index.html)
+    * 案例, 启动超时
+    * 案例, 内存错误
+  * Multithreading Issues: 多线程问题有时难以复现: Edit Scheme => Run/Diagnostics => Thread Sanitizer + Pause on issues
 
 Featured
 
