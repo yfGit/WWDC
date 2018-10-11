@@ -25,10 +25,18 @@
 
 @implementation PlayerDemoController
 
+- (void)dealloc
+{
+    NSLog(@"%s", __func__);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self configure];
+    // 外放
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+//    [self configure];
     
     [self.view bringSubviewToFront:self.detailBtn];
     
@@ -45,8 +53,10 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 
 - (void)viewWillLayoutSubviews
 {

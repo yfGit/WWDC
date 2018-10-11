@@ -21,12 +21,15 @@
 @property (nonatomic, copy) NSArray *playerItemObserverKeys;
 
 @property (weak, nonatomic) IBOutlet AVPlayerView_Xib *playerView;
+@property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (nonatomic, assign, getter=isChangeTime) BOOL changeTime; // 正在拖动slider
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *reasonLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timebaseRateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLengthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeRangesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *keepupLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bufferFullLabel;
@@ -38,13 +41,7 @@
 
 
 
-/*
- Todo
- 
- 播放前显示第一帧图像
- 加载动画
- 前进后退时cache的数据是怎么样的Z
- */
+
 @end
 
 @implementation ShowPropertyController
@@ -63,6 +60,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (BOOL)prefersHomeIndicatorAutoHidden
+{
+    return YES;
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -75,7 +77,26 @@
     [self configure];
     
 //    [self observeStatus];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleDeviceOrientationChange:)
+                                                name:UIDeviceOrientationDidChangeNotification object:nil];
 }
+
+- (void)handleDeviceOrientationChange:(NSNotification *)notification
+{
+//    BOOL isPortrait = UIInterfaceOrientationIsPortrait([UIDevice currentDevice].orientation);
+
+    BOOL isPortrait = [UIScreen mainScreen].bounds.size.height > 500;
+    if (isPortrait) {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+//        self.tabBarController.tabBar.hidden = NO;
+    }else {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+//        self.tabBarController.tabBar.hidden = YES;
+    }
+        
+}
+
 
 - (void)configure
 {
@@ -93,7 +114,7 @@
         // Fallback on earlier versions
     }
     AVPlayerLayer *layer = (AVPlayerLayer *)self.playerView.layer;
-    
+    layer.videoGravity = AVLayerVideoGravityResize;
     if ([layer isKindOfClass:[AVPlayerLayer class]]) {
         [layer setPlayer:player];
     }
@@ -114,7 +135,7 @@
                         videoSize = track.naturalSize;
                         
                         float ratio = videoSize.width / videoSize.height;
-                        self.playViewHeightConstraint.constant = [UIScreen mainScreen].bounds.size.width / ratio;
+//                        self.playViewHeightConstraint.constant = [UIScreen mainScreen].bounds.size.width / ratio;
                     }
                 }
                 NSLog(@"==== %@", NSStringFromCGSize(videoSize));
@@ -136,8 +157,8 @@
     self.link = link;
     
     
-    self.playerObserverKeys = @[@"status", @"reasonForWaitingToPlay", @"currentTime", @"timeControlStatus"];
-    self.playerItemObserverKeys = @[@"loadedTimeRanges",  @"timebase", @"currentTime", @"playbackLikelyToKeepUp", @"playbackBufferFull", @"playbackBufferEmpty"];
+    self.playerObserverKeys = @[@"status", @"reasonForWaitingToPlay", @"timeControlStatus"];
+    self.playerItemObserverKeys = @[@"status", @"loadedTimeRanges",  @"timebase", @"playbackLikelyToKeepUp", @"playbackBufferFull", @"playbackBufferEmpty"];
     
     for (NSString *key in self.playerObserverKeys) {
         [self.player addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:nil];
@@ -155,7 +176,7 @@
 - (void)timebase_EffectiveRateChanged:(NSNotification *)n
 {
     CGFloat rate = CMTimebaseGetRate(self.player.currentItem.timebase);
-    NSLog(@"EffectiveRateChanged: %.2f", rate);
+//    NSLog(@"EffectiveRateChanged: %.2f", rate);
 //    NSLog(@"%@", [NSThread currentThread]);
     NSInteger status = rate == 0 ? 4 : 1;
     if (self.player.rate != 0 && CMTimebaseGetRate(self.player.currentItem.timebase) == 0.0) {
@@ -192,10 +213,6 @@
 //            NSLog(@"reasonForWaitingToPlay: %@", change[NSK   eyValueChangeNewKey]);
             [self changeReason:obj];
         }
-        else if ([keyPath isEqualToString:@"currentTime"]) { // 当前播放时间
-            CMTime time = [change[NSKeyValueChangeNewKey] CMTimeValue];
-            [self changeCurrentTime:time];
-        }
         else if ([keyPath isEqualToString:@"status"]) { // 当前播放时间
             NSInteger status = [change[NSKeyValueChangeNewKey] integerValue];
 
@@ -206,9 +223,23 @@
         if ([keyPath isEqualToString:@"status"]) { // 状态
             NSInteger status = [change[NSKeyValueChangeNewKey] integerValue];
             [self changeStatusLabel:status];
+        NSLog(@"status   ssssss");
         }
         else if ([keyPath isEqualToString:@"loadedTimeRanges"]) { // 加载状态
             NSArray *rangs = change[NSKeyValueChangeNewKey];
+            
+            
+            if (self.slider.maximumValue == 0) {
+                AVPlayerItem *item = self.player.currentItem;
+                CMTime duration = item.duration;
+                
+                // 时长
+                float timeLength = duration.value / ((float)duration.timescale ? : 1); // 出现过0
+                self.timeLengthLabel.text = [NSString stringWithFormat:@"%.3fs", timeLength];
+                
+                // 进度条
+                self.slider.maximumValue = floorf(timeLength);
+            }
             
             for (NSValue *value in rangs) { // 基本上count都为1
                 CMTimeRange range = [value CMTimeRangeValue];
@@ -237,10 +268,7 @@
 //                [self changeStatusLabel:1];
 //            }
 //        }
-        else if ([keyPath isEqualToString:@"currentTime"]) { // 当前播放时间
-            CMTime time = [change[NSKeyValueChangeNewKey] CMTimeValue];
-            [self changeCurrentTime:time];
-        }
+
         else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
             BOOL keepup = [change[NSKeyValueChangeNewKey] boolValue];
             self.keepupLabel.text = keepup ? @"true" : @"false";
@@ -281,6 +309,98 @@
     self.pausedByManual = NO;
 }
 
+static float _lastSecond = 0;
+static UIImageView *_imgView;
+static UILabel *_timeLabel;
+- (IBAction)sliderTouchAction:(UISlider *)sender {
+    
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 450, 200, 180)];
+        [self.view addSubview:_imgView];
+        
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 420, 60, 30)];
+        _timeLabel.center = CGPointMake(_imgView.center.x, _timeLabel.center.y);
+        _timeLabel.textAlignment = NSTextAlignmentCenter;
+        _timeLabel.backgroundColor = [UIColor orangeColor];
+        [self.view addSubview:_timeLabel];
+        
+    });
+    
+    self.changeTime = YES;
+    
+    // 间隔 1 秒
+    float second = floorf(sender.value);
+    if (fabs(second-_lastSecond) >= 1) {
+        UIImage *image = [self imageForVideoTime:second];
+        _imgView.hidden = NO;
+        _timeLabel.hidden = NO;
+        _imgView.image = image;
+        _timeLabel.text = [NSString stringWithFormat:@"%.fs", second];
+        _lastSecond = second;
+    }
+}
+
+/// tips: 获取对应帧的图像, 效率原因, 不好作为开始显示第一帧, 可以用服务器传第一帧(或自制定精彩镜头)作为视频开头
+- (UIImage *)imageForVideoTime:(NSTimeInterval)timeSecond
+{
+    AVAssetImageGenerator *imageGen = [AVAssetImageGenerator assetImageGeneratorWithAsset:self.player.currentItem.asset];
+    
+    imageGen.appliesPreferredTrackTransform = YES; // 按正确方向对视频进行截图
+    CMTime time = CMTimeMakeWithSeconds(timeSecond, 100); // 几秒第几帧 tips: 好像数据张数不太对, 而且不同秒图片竟然一样
+    NSError *error = nil;
+    CMTime actualTime;
+    CGImageRef image = [imageGen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    UIImage *img = [[UIImage alloc] initWithCGImage:image];
+    CGImageRelease(image);
+    
+    return img;
+}
+
+- (IBAction)sliderAction:(UISlider *)sender {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        _imgView.hidden = YES;
+        _timeLabel.hidden = YES;
+    });
+    
+    if (self.player.currentItem.status != AVPlayerStatusReadyToPlay) return;
+    
+    [self jumpTime:floorf(sender.value)];
+
+}
+
+- (void)jumpTime:(NSTimeInterval)timeSecond
+{
+    CMTime time = CMTimeMakeWithSeconds(timeSecond, self.player.currentItem.duration.timescale);
+    // 普通方法有偏差
+    [self.player seekToTime:time toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
+        // tips: 缓冲时间显示画面, 需要不需要先暂停
+        if (finished) {
+            [self.player play];
+        }
+        self.changeTime = NO;
+    }];
+}
+
+- (IBAction)forwardBtn:(UIButton *)sender {
+    NSTimeInterval sum =  floorf(self.player.currentItem.duration.value / ((float)self.player.currentItem.duration.timescale ? : 1));
+    NSTimeInterval currentTime = floorf(self.slider.value);
+    
+    currentTime = (currentTime + 15) < sum ? (currentTime + 15) : sum; // tips: 跳不到最后一帧
+    [self jumpTime:currentTime];
+}
+- (IBAction)backAction:(UIButton *)sender {
+    
+    NSTimeInterval currentTime = floorf(self.slider.value);
+    
+    currentTime = (currentTime - 15) > 0 ? (currentTime - 15) : 0;
+    [self jumpTime:currentTime];
+}
+
+    
+
 - (IBAction)playImAction:(UIButton *)sender {
     if (@available(iOS 10.0, *)) {
 //        [self pauseAction:nil]; // 得先停止, 如果和player.automaticallyWaitsToMinimizeStalling = NO全用;
@@ -298,11 +418,14 @@
     
     float rate = self.player.rate;
     float timeRate = CMTimebaseGetRate(self.player.currentItem.timebase);
-    self.rateLabel.text = [NSString stringWithFormat:@"aaaaaa%.2f", rate];
+    self.rateLabel.text = [NSString stringWithFormat:@"%.2f", rate];
     self.timebaseRateLabel.text = [NSString stringWithFormat:@"%.2f", timeRate];
     
-    float currentTime = self.player.currentItem.currentTime.value / self.player.currentItem.currentTime.timescale;
-    self.currentTimeLabel.text = [NSString stringWithFormat:@"%.2f", currentTime];
+    float currentTime = self.player.currentItem.currentTime.value / (float)self.player.currentItem.currentTime.timescale;
+    self.currentTimeLabel.text = [NSString stringWithFormat:@"%.3fs", currentTime];
+    if (!self.isChangeTime) {
+        self.slider.value = floorf(currentTime);
+    }
 }
 
 
@@ -354,12 +477,6 @@
     self.timeRangesLabel.text = text;
 }
 
-- (void)changeCurrentTime:(CMTime)time
-{
-    CGFloat second = time.value / time.timescale;
-    self.currentTimeLabel.text = [NSString stringWithFormat:@"%.2fs", second];
-}
-
 - (void)changeControlStatus:(NSInteger)status
 {
     NSString *str = status == 0 ? @"Paused" : status == 1 ? @"WaitingToPlayAtSpecifiedRate" : @"Playing";
@@ -374,3 +491,49 @@
 }
 
 @end
+
+
+
+/*
+ Todo
+ 
+ 所有 tips:
+ 
+ 播放前显示第一帧图像: 最好的
+ 加载动画
+ 前进后退时cache的数据是怎么样的Z
+ */
+
+/*
+ Tips:
+ 
+ // 视频缩放
+ AVPlayerLayer.videoGravity = AVLayerVideoGravityResize;
+ 
+ // 视频尺寸
+ https://www.jianshu.com/p/e47557208420 [asset loadValuesAsynchronouslyForKeys:@[@"tracks"] completionHandler:^{}];
+ 
+ // 声音外放
+ [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+ 
+ // 精准偏差问题
+ 使用 - (void)seekToTime:(CMTime)time toleranceBefore:(CMTime)toleranceBefore toleranceAfter:(CMTime)toleranceAfter completionHandler:(void (^)(BOOL finished))completionHandler
+ 
+ 
+ 
+ 
+ KVO
+ 
+ AVPlayer:
+ AVPlayerItem: status(时长不行, 参数有时为0); loadedTimeRanges(视频时长+缓冲时长);
+ 
+ 
+ 不支持KVO
+ currentTime: 获取当前时间用 定时器 self.player.currentItem.currentTime.value / (float)self.player.currentItem.currentTime.timescale;
+ 
+ 
+ 播放源时长
+ AVPlayItem.status 监听
+                   == .ReadyToPlay 时, 获取 item.duration, CMTime value/(float)timescale
+ 
+ */
