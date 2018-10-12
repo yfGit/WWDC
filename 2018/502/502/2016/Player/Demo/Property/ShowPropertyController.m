@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet AVPlayerView_Xib *playerView;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (nonatomic, assign, getter=isChangeTime) BOOL changeTime; // 正在拖动slider
+@property (weak, nonatomic) IBOutlet UIProgressView *bufferProgressView;
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *reasonLabel;
@@ -113,13 +114,22 @@
     } else {
         // Fallback on earlier versions
     }
+    // xib适配 解决横屏动画问题
     AVPlayerLayer *layer = (AVPlayerLayer *)self.playerView.layer;
     layer.videoGravity = AVLayerVideoGravityResize;
-    if ([layer isKindOfClass:[AVPlayerLayer class]]) {
-        [layer setPlayer:player];
-    }
+    [layer setPlayer:player];
     
-    NSURL *url = [NSURL URLWithString:@"https://media.w3.org/2010/05/sintel/trailer.mp4"];
+    
+    /* 代码适配 解决横屏动画问题
+     AVPlayerView *containView = [AVPlayerView new];
+     containView.frame = self.view.bounds;
+     containView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+     AVPlayerLayer *layer = (AVPlayerLayer *)containView.layer;
+     
+     因为 -viewWillLayoutSubviews  旋转没有动画, 用View容器
+     */
+    
+    NSURL *url = [NSURL URLWithString:@"https://gamevideo.wmupd.com/dota2media/media/cover0829.mp4"];
     AVAsset *asset = [AVAsset assetWithURL:url];
     AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
     
@@ -134,11 +144,11 @@
                     if ([track.mediaType isEqualToString:AVMediaTypeVideo]) {
                         videoSize = track.naturalSize;
                         
-                        float ratio = videoSize.width / videoSize.height;
+//                        float ratio = videoSize.width / videoSize.height;
 //                        self.playViewHeightConstraint.constant = [UIScreen mainScreen].bounds.size.width / ratio;
                     }
                 }
-                NSLog(@"==== %@", NSStringFromCGSize(videoSize));
+                NSLog(@"视频尺寸:  %@", NSStringFromCGSize(videoSize));
                 [player replaceCurrentItemWithPlayerItem:item];
                 
                 [player play];
@@ -168,21 +178,28 @@
         [self.player.currentItem addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:nil];
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timebase_EffectiveRateChanged:) name:(NSString *)kCMTimebaseNotification_EffectiveRateChanged object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(timebase_EffectiveRateChanged:)
+                                                 name:(NSString *)kCMTimebaseNotification_EffectiveRateChanged
+                                               object:nil];
 }
 
 // 实时播放状态: 0, 停止; 1, 播放
 // 点击播放到AVPlayer.timeControlStatus == .playing或者CMTimebaseGetRate(AVPlayerItem.timebase) > 0的间隔即是播放启动时长。
 - (void)timebase_EffectiveRateChanged:(NSNotification *)n
 {
-    CGFloat rate = CMTimebaseGetRate(self.player.currentItem.timebase);
-//    NSLog(@"EffectiveRateChanged: %.2f", rate);
-//    NSLog(@"%@", [NSThread currentThread]);
-    NSInteger status = rate == 0 ? 4 : 1;
-    if (self.player.rate != 0 && CMTimebaseGetRate(self.player.currentItem.timebase) == 0.0) {
+    NSInteger status;
+    
+    float playerRate = self.player.rate;
+    float itemRate = CMTimebaseGetRate(self.player.currentItem.timebase);
+    if (playerRate != itemRate) { // wait
         status = 3;
+    }else if (playerRate == 0) { // pause
+        status = 4;
+    }else { // playing
+        status = 1;
     }
-
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self changeStatusLabel:status];
     });
@@ -222,8 +239,8 @@
         
         if ([keyPath isEqualToString:@"status"]) { // 状态
             NSInteger status = [change[NSKeyValueChangeNewKey] integerValue];
-            [self changeStatusLabel:status];
-        NSLog(@"status   ssssss");
+//            [self changeStatusLabel:status];
+//        NSLog(@"status   ssssss");
         }
         else if ([keyPath isEqualToString:@"loadedTimeRanges"]) { // 加载状态
             NSArray *rangs = change[NSKeyValueChangeNewKey];
@@ -234,26 +251,29 @@
                 CMTime duration = item.duration;
                 
                 // 时长
-                float timeLength = duration.value / ((float)duration.timescale ? : 1); // 出现过0
+                float timeLength = duration.value / (float)(duration.timescale ?: 1) ;
                 self.timeLengthLabel.text = [NSString stringWithFormat:@"%.3fs", timeLength];
                 
+                if (!duration.timescale) { // 出现过0
+                    timeLength = 0;
+                }
                 // 进度条
                 self.slider.maximumValue = floorf(timeLength);
             }
             
-            for (NSValue *value in rangs) { // 基本上count都为1
-                CMTimeRange range = [value CMTimeRangeValue];
+//            for (NSValue *value in rangs) { // 基本上count都为1
+                CMTimeRange range = [rangs.firstObject CMTimeRangeValue];
                 [self changeTimeRange:range];
                 
-                NSTimeInterval time = [self timeIntervalForLoadedTimeRanges:range];
-                if (@available(iOS 10.0, *)) {
-                    if (time > AutoPlayTimeInterval && !self.pausedByManual && self.player.automaticallyWaitsToMinimizeStalling == NO) {
-                        [self.player play];
-                    }
-                } else {
-                    // Fallback on earlier versions
-                }
-            }
+//                NSTimeInterval time = [self timeIntervalForLoadedTimeRanges:range];
+//                if (@available(iOS 10.0, *)) {
+//                    if (time > AutoPlayTimeInterval && !self.pausedByManual && self.player.automaticallyWaitsToMinimizeStalling == NO) {
+//                        [self.player play];
+//                    }
+//                } else {
+//                    // Fallback on earlier versions
+//                }
+//            }
             
 
         }
@@ -273,7 +293,7 @@
             BOOL keepup = [change[NSKeyValueChangeNewKey] boolValue];
             self.keepupLabel.text = keepup ? @"true" : @"false";
             if (keepup) {
-                [self changeStatusLabel:5];
+//                [self changeStatusLabel:5];
             }
         }
         else if ([keyPath isEqualToString:@"playbackBufferFull"]) {
@@ -289,7 +309,7 @@
 
 - (NSTimeInterval)timeIntervalForLoadedTimeRanges:(CMTimeRange)timeRange
 {
-    NSTimeInterval start = CMTimeGetSeconds(timeRange.start);
+//    NSTimeInterval start = CMTimeGetSeconds(timeRange.start);
     NSTimeInterval end   = CMTimeGetSeconds(timeRange.duration);
     
     return end;
@@ -305,13 +325,14 @@
 
 - (IBAction)playAction:(UIButton *)sender {
     [self.player play];
-    [self changeStatusLabel:3];
+//    [self changeStatusLabel:3];
     self.pausedByManual = NO;
 }
 
 static float _lastSecond = 0;
-static UIImageView *_imgView;
+static UIImageView *_imgView; // 图省事儿
 static UILabel *_timeLabel;
+
 - (IBAction)sliderTouchAction:(UISlider *)sender {
     
     
@@ -319,25 +340,35 @@ static UILabel *_timeLabel;
     dispatch_once(&onceToken, ^{
         
         _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 450, 200, 180)];
-        [self.view addSubview:_imgView];
         
         _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 420, 60, 30)];
         _timeLabel.center = CGPointMake(_imgView.center.x, _timeLabel.center.y);
         _timeLabel.textAlignment = NSTextAlignmentCenter;
         _timeLabel.backgroundColor = [UIColor orangeColor];
-        [self.view addSubview:_timeLabel];
-        
     });
+    
+    if (!_imgView.superview) {
+        [self.view addSubview:_imgView];
+        [self.view addSubview:_timeLabel];
+        [self.view addSubview:_imgView];
+        [self.view addSubview:_timeLabel];
+    }
     
     self.changeTime = YES;
     
     // 间隔 1 秒
     float second = floorf(sender.value);
     if (fabs(second-_lastSecond) >= 1) {
-        UIImage *image = [self imageForVideoTime:second];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImage *image = [self imageForVideoTime:second];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _imgView.image = image;
+
+            });
+        });
+        
         _imgView.hidden = NO;
         _timeLabel.hidden = NO;
-        _imgView.image = image;
         _timeLabel.text = [NSString stringWithFormat:@"%.fs", second];
         _lastSecond = second;
     }
@@ -346,16 +377,28 @@ static UILabel *_timeLabel;
 /// tips: 获取对应帧的图像, 效率原因, 不好作为开始显示第一帧, 可以用服务器传第一帧(或自制定精彩镜头)作为视频开头
 - (UIImage *)imageForVideoTime:(NSTimeInterval)timeSecond
 {
+//    NSTimeInterval before = CACurrentMediaTime();
+    
     AVAssetImageGenerator *imageGen = [AVAssetImageGenerator assetImageGeneratorWithAsset:self.player.currentItem.asset];
     
+     // 设置时间偏差, requestTime == actualTime, 但是时间可能多10倍, 明显卡顿
+//    imageGen.requestedTimeToleranceBefore = kCMTimeZero;
+//    imageGen.requestedTimeToleranceAfter  = kCMTimeZero;
     imageGen.appliesPreferredTrackTransform = YES; // 按正确方向对视频进行截图
-    CMTime time = CMTimeMakeWithSeconds(timeSecond, 100); // 几秒第几帧 tips: 好像数据张数不太对, 而且不同秒图片竟然一样
+    CMTime time = CMTimeMakeWithSeconds(timeSecond, 100); // 几秒第几帧, 请求生成的图像时间
     NSError *error = nil;
-    CMTime actualTime;
+    CMTime actualTime; // 实际生成的图像时间
+    
+    // 异步方法 generateCGImagesAsynchronouslyForTimes:completionHandler:
     CGImageRef image = [imageGen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    
     UIImage *img = [[UIImage alloc] initWithCGImage:image];
     CGImageRelease(image);
     
+//    NSLog(@"time: %f - %f", CMTimeGetSeconds(time), CMTimeGetSeconds(actualTime));
+//
+//    NSTimeInterval after = CACurrentMediaTime();
+//    NSLog(@"=========== %f", after - before);
     return img;
 }
 
@@ -363,6 +406,7 @@ static UILabel *_timeLabel;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         _imgView.hidden = YES;
         _timeLabel.hidden = YES;
+        
     });
     
     if (self.player.currentItem.status != AVPlayerStatusReadyToPlay) return;
@@ -467,14 +511,16 @@ static UILabel *_timeLabel;
     CMTime start  = timeRange.start;
     CMTime duration = timeRange.duration;
     
-    NSAssert(start.timescale != 0, @"start.timescale == 0");
-    NSAssert(duration.timescale != 0, @"duration.timescale == 0");
+    CGFloat startTime = start.value / (float)start.timescale; // 默认0, 暂停过则为暂停时间
+    CGFloat loadTime = duration.value / (float)duration.timescale;
     
-    CGFloat startTime = start.value / start.timescale; // 默认0, 暂停过则为暂停时间
-    CGFloat loadTime = duration.value / duration.timescale;
-    
-    NSString *text = [NSString stringWithFormat:@"[%.2fs, %.2fs]", startTime, loadTime];
+    NSString *text = [NSString stringWithFormat:@"[%.3fs, %.3fs]", startTime, loadTime];
     self.timeRangesLabel.text = text;
+    
+    // 缓冲进度
+    CGFloat bufferTime = loadTime + startTime;
+    CGFloat progress = floorf(bufferTime) / floorf(self.slider.maximumValue);
+    self.bufferProgressView.progress = progress;
 }
 
 - (void)changeControlStatus:(NSInteger)status
@@ -501,39 +547,7 @@ static UILabel *_timeLabel;
  
  播放前显示第一帧图像: 最好的
  加载动画
- 前进后退时cache的数据是怎么样的Z
- */
+ 前进后退时cache的数据是怎么样的
+ 清空参数(切换播放源)
+*/
 
-/*
- Tips:
- 
- // 视频缩放
- AVPlayerLayer.videoGravity = AVLayerVideoGravityResize;
- 
- // 视频尺寸
- https://www.jianshu.com/p/e47557208420 [asset loadValuesAsynchronouslyForKeys:@[@"tracks"] completionHandler:^{}];
- 
- // 声音外放
- [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
- 
- // 精准偏差问题
- 使用 - (void)seekToTime:(CMTime)time toleranceBefore:(CMTime)toleranceBefore toleranceAfter:(CMTime)toleranceAfter completionHandler:(void (^)(BOOL finished))completionHandler
- 
- 
- 
- 
- KVO
- 
- AVPlayer:
- AVPlayerItem: status(时长不行, 参数有时为0); loadedTimeRanges(视频时长+缓冲时长);
- 
- 
- 不支持KVO
- currentTime: 获取当前时间用 定时器 self.player.currentItem.currentTime.value / (float)self.player.currentItem.currentTime.timescale;
- 
- 
- 播放源时长
- AVPlayItem.status 监听
-                   == .ReadyToPlay 时, 获取 item.duration, CMTime value/(float)timescale
- 
- */

@@ -21,6 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     YYLabel_APPDELEGATE_CONFIG
+    [fpsLabel removeFromSuperview];
     
     return YES;
 }

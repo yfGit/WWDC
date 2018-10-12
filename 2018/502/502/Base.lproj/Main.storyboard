@@ -285,9 +285,14 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mz9-Uf-Bor" userLabel="Tool">
                                 <rect key="frame" x="0.0" y="315" width="375" height="40"/>
                                 <subviews>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bK6-C6-Hga">
+                                        <rect key="frame" x="62" y="19" width="251" height="2"/>
+                                    </progressView>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="GKc-jX-mEw">
                                         <rect key="frame" x="60" y="0.0" width="255" height="41"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="sliderAction:" destination="bfs-X8-7gc" eventType="touchUpOutside" id="65A-Fx-JUa"/>
                                             <action selector="sliderAction:" destination="bfs-X8-7gc" eventType="touchUpInside" id="BYU-HH-SaH"/>
@@ -316,6 +321,8 @@
                                 <constraints>
                                     <constraint firstItem="yAq-Hi-7Ie" firstAttribute="centerY" secondItem="GKc-jX-mEw" secondAttribute="centerY" id="4Ja-td-goL"/>
                                     <constraint firstItem="GKc-jX-mEw" firstAttribute="top" secondItem="Mz9-Uf-Bor" secondAttribute="top" id="O5q-cb-dxj"/>
+                                    <constraint firstItem="bK6-C6-Hga" firstAttribute="trailing" secondItem="GKc-jX-mEw" secondAttribute="trailing" id="PQh-bC-QAt"/>
+                                    <constraint firstItem="bK6-C6-Hga" firstAttribute="centerY" secondItem="GKc-jX-mEw" secondAttribute="centerY" id="U2T-lf-fce"/>
                                     <constraint firstItem="yAq-Hi-7Ie" firstAttribute="leading" secondItem="GKc-jX-mEw" secondAttribute="trailing" constant="15" id="VBj-xi-vFz"/>
                                     <constraint firstItem="Nbf-e1-yQK" firstAttribute="centerY" secondItem="GKc-jX-mEw" secondAttribute="centerY" id="Yn6-qy-uar"/>
                                     <constraint firstAttribute="trailing" secondItem="yAq-Hi-7Ie" secondAttribute="trailing" constant="15" id="dVH-YC-gMM"/>
@@ -325,6 +332,7 @@
                                         <variation key="heightClass=compact" constant="0.0"/>
                                     </constraint>
                                     <constraint firstAttribute="bottom" secondItem="GKc-jX-mEw" secondAttribute="bottom" id="oDd-3Q-KjT"/>
+                                    <constraint firstItem="bK6-C6-Hga" firstAttribute="leading" secondItem="GKc-jX-mEw" secondAttribute="leading" id="r67-SP-y6H"/>
                                     <constraint firstItem="GKc-jX-mEw" firstAttribute="centerY" secondItem="Mz9-Uf-Bor" secondAttribute="centerY" id="z86-xE-E1I"/>
                                 </constraints>
                                 <variation key="heightClass=compact">
@@ -592,6 +600,7 @@
                     <connections>
                         <outlet property="bufferEmptyLabel" destination="BTt-bq-V4H" id="kxe-8N-EhL"/>
                         <outlet property="bufferFullLabel" destination="7Us-Wi-xSX" id="Jap-Mt-wQB"/>
+                        <outlet property="bufferProgressView" destination="bK6-C6-Hga" id="fUV-kg-1QL"/>
                         <outlet property="controlStatusLabel" destination="Tww-Dc-lNE" id="E4a-9K-HKM"/>
                         <outlet property="currentTimeLabel" destination="i8F-yw-xQO" id="3P9-iZ-gdC"/>
                         <outlet property="keepupLabel" destination="vKy-QO-vJi" id="JdU-oZ-rJV"/>
