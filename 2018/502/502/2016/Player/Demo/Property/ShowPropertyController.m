@@ -37,11 +37,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *bufferEmptyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *controlStatusLabel;
 
-@property (nonatomic, assign) BOOL pausedByManual; // 自动暂停
+@property (nonatomic, assign) BOOL pausedByManual; // 手动暂停
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *playViewHeightConstraint;
-
-
-
 
 @end
 
@@ -66,9 +63,9 @@
     return YES;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+    [super viewDidDisappear:animated];
     [self.link invalidate];
 }
 
@@ -86,7 +83,6 @@
 - (void)handleDeviceOrientationChange:(NSNotification *)notification
 {
 //    BOOL isPortrait = UIInterfaceOrientationIsPortrait([UIDevice currentDevice].orientation);
-
     BOOL isPortrait = [UIScreen mainScreen].bounds.size.height > 500;
     if (isPortrait) {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -95,7 +91,6 @@
         [self.navigationController setNavigationBarHidden:YES animated:YES];
 //        self.tabBarController.tabBar.hidden = YES;
     }
-        
 }
 
 
@@ -106,9 +101,9 @@
     
     if (@available(iOS 10.0, *)) {
         /* NO
-            不等待缓冲
-            reasonForWaitingToPlay 无效
-            timeControlStatus 不会再出现 AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate
+         不等待缓冲
+         reasonForWaitingToPlay 无效
+         timeControlStatus 不会再出现 AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate
          */
 //        player.automaticallyWaitsToMinimizeStalling = NO;
     } else {
@@ -149,15 +144,13 @@
                     }
                 }
                 NSLog(@"视频尺寸:  %@", NSStringFromCGSize(videoSize));
+                [player play];
                 [player replaceCurrentItemWithPlayerItem:item];
                 
-                [player play];
                 [self observeStatus];
             }
         });
     }];
-    
-
 }
 
 - (void)observeStatus
@@ -212,8 +205,8 @@
  
  
  pasued  play() -> waiting  likelyToKeepUp -> playing
-    |                   `- - <-  bufferEmpty  - |
-     `- - <- pause()  - - - - - - - - - - - - - |
+ |                   `- - <-  bufferEmpty  - |
+ `- - <- pause()  - - - - - - - - - - - - - |
  */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
@@ -232,7 +225,7 @@
         }
         else if ([keyPath isEqualToString:@"status"]) { // 当前播放时间
             NSInteger status = [change[NSKeyValueChangeNewKey] integerValue];
-
+            
         }
         
     }else {
@@ -262,9 +255,9 @@
             }
             
 //            for (NSValue *value in rangs) { // 基本上count都为1
-                CMTimeRange range = [rangs.firstObject CMTimeRangeValue];
-                [self changeTimeRange:range];
-                
+            CMTimeRange range = [rangs.firstObject CMTimeRangeValue];
+            [self changeTimeRange:range];
+            
 //                NSTimeInterval time = [self timeIntervalForLoadedTimeRanges:range];
 //                if (@available(iOS 10.0, *)) {
 //                    if (time > AutoPlayTimeInterval && !self.pausedByManual && self.player.automaticallyWaitsToMinimizeStalling == NO) {
@@ -275,20 +268,20 @@
 //                }
 //            }
             
-
+            
         }
 //        else if ([keyPath isEqualToString:@"timebase"]) { // 是否正在播放
 //
 //            CMTimebaseRef timebase =  (__bridge CMTimebaseRef)change[NSKeyValueChangeNewKey];
 //            float rate = CMTimebaseGetRate(timebase);
-////            NSLog(@"rate: %f", rate);
+//            NSLog(@"rate: %f", rate);
 //            if (rate == 0) {
 //                [self changeStatusLabel:3];
 //            }else {
 //                [self changeStatusLabel:1];
 //            }
 //        }
-
+        
         else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
             BOOL keepup = [change[NSKeyValueChangeNewKey] boolValue];
             self.keepupLabel.text = keepup ? @"true" : @"false";
@@ -363,7 +356,7 @@ static UILabel *_timeLabel;
             UIImage *image = [self imageForVideoTime:second];
             dispatch_async(dispatch_get_main_queue(), ^{
                 _imgView.image = image;
-
+                
             });
         });
         
@@ -381,7 +374,7 @@ static UILabel *_timeLabel;
     
     AVAssetImageGenerator *imageGen = [AVAssetImageGenerator assetImageGeneratorWithAsset:self.player.currentItem.asset];
     
-     // 设置时间偏差, requestTime == actualTime, 但是时间可能多10倍, 明显卡顿
+    // 设置时间偏差, requestTime == actualTime, 但是时间可能多10倍, 明显卡顿
 //    imageGen.requestedTimeToleranceBefore = kCMTimeZero;
 //    imageGen.requestedTimeToleranceAfter  = kCMTimeZero;
     imageGen.appliesPreferredTrackTransform = YES; // 按正确方向对视频进行截图
@@ -412,20 +405,29 @@ static UILabel *_timeLabel;
     if (self.player.currentItem.status != AVPlayerStatusReadyToPlay) return;
     
     [self jumpTime:floorf(sender.value)];
-
+    
 }
 
 - (void)jumpTime:(NSTimeInterval)timeSecond
 {
     CMTime time = CMTimeMakeWithSeconds(timeSecond, self.player.currentItem.duration.timescale);
-    // 普通方法有偏差
-    [self.player seekToTime:time toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
-        // tips: 缓冲时间显示画面, 需要不需要先暂停
+    
+    // 偏差, 但是更流畅
+    [self.player seekToTime:time completionHandler:^(BOOL finished) {
         if (finished) {
             [self.player play];
         }
         self.changeTime = NO;
     }];
+    
+    // 无偏差
+//    [self.player seekToTime:time toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
+//        // tips: 缓冲时间显示画面, 需要不需要先暂停
+//        if (finished) {
+//            [self.player play];
+//        }
+//        self.changeTime = NO;
+//    }];
 }
 
 - (IBAction)forwardBtn:(UIButton *)sender {
@@ -443,7 +445,7 @@ static UILabel *_timeLabel;
     [self jumpTime:currentTime];
 }
 
-    
+
 
 - (IBAction)playImAction:(UIButton *)sender {
     if (@available(iOS 10.0, *)) {
@@ -549,5 +551,5 @@ static UILabel *_timeLabel;
  加载动画
  前进后退时cache的数据是怎么样的
  清空参数(切换播放源)
-*/
+ */
 

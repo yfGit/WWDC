@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -243,6 +244,9 @@
                                         <rect key="frame" x="253.5" y="0.0" width="111.5" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Play Immediately"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="titleLabel.adjustsFontSizeToFitWidth" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="playImAction:" destination="bfs-X8-7gc" eventType="touchUpInside" id="MpE-fT-Gcv"/>
                                         </connections>
@@ -584,15 +588,15 @@
                         <viewLayoutGuide key="safeArea" id="h6I-D5-UyA"/>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="FNB-k7-D15"/>
                                 <exclude reference="MIy-gg-4tU"/>
+                                <exclude reference="FNB-k7-D15"/>
                                 <exclude reference="bDx-AY-b8Z"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <include reference="FNB-k7-D15"/>
                                 <exclude reference="MIy-gg-4tU"/>
+                                <include reference="FNB-k7-D15"/>
                                 <exclude reference="bDx-AY-b8Z"/>
                             </mask>
                         </variation>
