@@ -7,7 +7,6 @@
 //
 
 #import "PlayerDemoController.h"
-#import "ToolView.h"
 #import "AVPlayerView.h"
 @import AVFoundation;
 
@@ -16,8 +15,6 @@
 @property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
 @property (weak, nonatomic) IBOutlet UIButton *detailBtn;
-
-@property (nonatomic, strong) ToolView *toolView;
 
 @property (nonatomic, strong) NSTimer *timer;
 
@@ -35,7 +32,6 @@
     
     // 外放
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

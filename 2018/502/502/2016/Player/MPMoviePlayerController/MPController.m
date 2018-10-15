@@ -42,7 +42,12 @@
 }
 
 - (IBAction)playAction:(UIButton *)sender {
-    [self.moviePC play];
+    if (self.moviePC.currentPlaybackRate != 0) {
+        [self.moviePC pause];
+    }else {
+        [self.moviePC play];
+    }
+//    [self.moviePC play];
 }
 
 @end

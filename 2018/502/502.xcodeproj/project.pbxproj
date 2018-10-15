@@ -219,12 +219,11 @@
 				BFD0602D216D98DD00284432 /* PlayerDemoController.h */,
 				BFD06027216D98DD00284432 /* PlayerDemoController.m */,
 				BFD0603E216DD90300284432 /* Property */,
+				BFD0604621746A6000284432 /* Loop */,
 				BFD0602C216D98DD00284432 /* ToolView.h */,
 				BFD06030216D98DD00284432 /* ToolView.m */,
-				BFD0602A216D98DD00284432 /* AVPlayerView_Xib.h */,
-				BFD0602B216D98DD00284432 /* AVPlayerView.m */,
 				BFD06031216D98DD00284432 /* AVPlayerView.h */,
-				BFD06032216D98DD00284432 /* AVPlayerView_Xib.m */,
+				BFD0602B216D98DD00284432 /* AVPlayerView.m */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -234,8 +233,17 @@
 			children = (
 				BFD0602E216D98DD00284432 /* ShowPropertyController.h */,
 				BFD06029216D98DD00284432 /* ShowPropertyController.m */,
+				BFD0602A216D98DD00284432 /* AVPlayerView_Xib.h */,
+				BFD06032216D98DD00284432 /* AVPlayerView_Xib.m */,
 			);
 			path = Property;
+			sourceTree = "<group>";
+		};
+		BFD0604621746A6000284432 /* Loop */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Loop;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

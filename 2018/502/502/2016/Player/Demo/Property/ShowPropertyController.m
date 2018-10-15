@@ -139,7 +139,8 @@
      
      因为 -viewWillLayoutSubviews  旋转没有动画, 用View容器
      */
-    
+//    https://gamevideo.wmupd.com/dota2media/media/cover0829.mp4
+    // http://www.w3school.com.cn/example/html5/mov_bbb.mp4
     NSURL *url = [NSURL URLWithString:@"https://gamevideo.wmupd.com/dota2media/media/cover0829.mp4"];
     AVAsset *asset = [AVAsset assetWithURL:url];
     AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
@@ -195,6 +196,10 @@
                                              selector:@selector(timebase_EffectiveRateChanged:)
                                                  name:(NSString *)kCMTimebaseNotification_EffectiveRateChanged
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playbackFinished:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:nil];
 }
 
 // 实时播放状态: 0, 停止; 1, 播放
@@ -205,7 +210,7 @@
     
     float playerRate = self.player.rate;
     float itemRate = CMTimebaseGetRate(self.player.currentItem.timebase);
-    if (playerRate != itemRate) { // wait
+    if (playerRate != itemRate && !self.player.currentItem.isPlaybackLikelyToKeepUp) { // wait
         status = 3;
     }else if (playerRate == 0) { // pause
         status = 4;
@@ -216,6 +221,17 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self changeStatusLabel:status];
     });
+}
+
+- (void)playbackFinished:(NSNotification *)n
+{
+    [self changeStatusLabel:4];
+    CMTime time = CMTimeMakeWithSeconds(0, 1);
+    [self.player seekToTime:time toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
+        if (finished) {
+            [self.player play];
+        }
+    }];
 }
 
 
@@ -333,7 +349,7 @@
 - (IBAction)pauseAction:(UIButton *)sender {
     [self.player pause];
     self.pausedByManual = YES;
-//    [self changeStatusLabel:4];
+    [self changeStatusLabel:4];
 }
 
 - (IBAction)playAction:(UIButton *)sender {
@@ -345,7 +361,7 @@
 - (IBAction)playImAction:(UIButton *)sender {
     
     if (@available(iOS 10.0, *)) {
-        //        [self pauseAction:nil]; // 得先停止, 如果和player.automaticallyWaitsToMinimizeStalling = NO全用;
+//        [self pauseAction:nil]; // 得先停止, 如果和player.automaticallyWaitsToMinimizeStalling = NO全用;
         [self.player playImmediatelyAtRate:0.5];
     } else {
         // Fallback on earlier versions

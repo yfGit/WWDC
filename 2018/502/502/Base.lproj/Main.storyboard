@@ -116,7 +116,7 @@
                                     <constraint firstAttribute="height" constant="60" id="R6v-bR-OID"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="zdz-5z-Xla"/>
                                 </constraints>
-                                <state key="normal" title="ShowVC"/>
+                                <state key="normal" title="Play/Pause"/>
                                 <connections>
                                     <action selector="playAction:" destination="Pv5-LY-rd7" eventType="touchUpInside" id="e0E-jG-3Oj"/>
                                 </connections>
