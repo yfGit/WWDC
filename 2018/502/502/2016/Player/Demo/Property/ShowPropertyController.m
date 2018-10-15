@@ -9,6 +9,7 @@
 #import "ShowPropertyController.h"
 #import "AVPlayerView_Xib.h"
 @import AVFoundation;
+#import "YYWeakProxy.h"
 
 #define AutoPlayTimeInterval 0.99
 
@@ -47,6 +48,14 @@
 - (void)dealloc
 {
     NSLog(@"%s", __func__);
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [self removeObserverForItem:nil];
+}
+
+- (void)removeObserverForItem:(AVPlayerItem *)item
+{
     for (NSString *key in self.playerObserverKeys) {
         [self.player removeObserver:self forKeyPath:key];
     }
@@ -54,8 +63,6 @@
     for (NSString *key in self.playerItemObserverKeys) {
         [self.player.currentItem removeObserver:self forKeyPath:key];
     }
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)prefersHomeIndicatorAutoHidden
@@ -63,10 +70,19 @@
     return YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.player play];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [self.link invalidate];
+
+    [self.player pause];
+//    [self.link invalidate];
 }
 
 - (void)viewDidLoad {
@@ -144,10 +160,14 @@
                     }
                 }
                 NSLog(@"视频尺寸:  %@", NSStringFromCGSize(videoSize));
+                
                 [player play];
                 [player replaceCurrentItemWithPlayerItem:item];
                 
-                [self observeStatus];
+                [self observeStatus]; // 多个item, 自定义管理removeObserve
+                if (!(self.isViewLoaded && self.view.window)) {
+                    [player pause]; // 网速慢的情况下, 不暂停vc不能释放(中间disappear)
+                }
             }
         });
     }];
@@ -155,7 +175,7 @@
 
 - (void)observeStatus
 {
-    CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(linkAction)];
+    CADisplayLink *link = [CADisplayLink displayLinkWithTarget:[YYWeakProxy proxyWithTarget:self] selector:@selector(linkAction)];
     [link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
     self.link = link;
     
@@ -322,6 +342,16 @@
     self.pausedByManual = NO;
 }
 
+- (IBAction)playImAction:(UIButton *)sender {
+    
+    if (@available(iOS 10.0, *)) {
+        //        [self pauseAction:nil]; // 得先停止, 如果和player.automaticallyWaitsToMinimizeStalling = NO全用;
+        [self.player playImmediatelyAtRate:0.5];
+    } else {
+        // Fallback on earlier versions
+    }
+}
+
 static float _lastSecond = 0;
 static UIImageView *_imgView; // 图省事儿
 static UILabel *_timeLabel;
@@ -443,17 +473,6 @@ static UILabel *_timeLabel;
     
     currentTime = (currentTime - 15) > 0 ? (currentTime - 15) : 0;
     [self jumpTime:currentTime];
-}
-
-
-
-- (IBAction)playImAction:(UIButton *)sender {
-    if (@available(iOS 10.0, *)) {
-//        [self pauseAction:nil]; // 得先停止, 如果和player.automaticallyWaitsToMinimizeStalling = NO全用;
-        [self.player playImmediatelyAtRate:0.5];
-    } else {
-        // Fallback on earlier versions
-    }
 }
 
 - (void)linkAction
