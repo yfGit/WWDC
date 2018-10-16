@@ -162,13 +162,19 @@
                                 <rect key="frame" x="202.5" y="164" width="142.5" height="142.5"/>
                                 <color key="backgroundColor" red="1" green="0.81693000100000002" blue="0.090341730580000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="  Detail  "/>
+                                <state key="normal" title="AVQueuePlayer"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="titleLabel.adjustsFontSizeToFitWidth" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="CzA-oL-yYN" kind="show" id="nAM-4V-ccx"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4BD-r1-PkY">
                                 <rect key="frame" x="30" y="406.5" width="142.5" height="142.5"/>
                                 <color key="backgroundColor" red="1" green="0.81693000100000002" blue="0.090341730580000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="  Detail  "/>
+                                <state key="normal" title="HLS"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qd-MK-aCt">
                                 <rect key="frame" x="202.5" y="406.5" width="142.5" height="142.5"/>
@@ -732,9 +738,130 @@
             </objects>
             <point key="canvasLocation" x="2098" y="2784"/>
         </scene>
+        <!--AVQueuePlayer-->
+        <scene sceneID="9BJ-1n-hru">
+            <objects>
+                <viewController title="AVQueuePlayer" hidesBottomBarWhenPushed="YES" id="CzA-oL-yYN" customClass="SetupLoopController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xp5-Jz-IIi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3i-HM-aia">
+                                <rect key="frame" x="0.0" y="114" width="375" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Y5P-00-TAg"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Media file:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aQ-Ld-FrZ">
+                                <rect key="frame" x="0.0" y="84" width="375" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cxD-SN-TGg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDT-lC-eGi">
+                                <rect key="frame" x="0.0" y="294" width="375" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Ztr-VA-uvh"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loop count:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIq-4J-Nb1">
+                                <rect key="frame" x="0.0" y="264" width="375" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="AN7-MD-eUf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0x-ua-5br">
+                                <rect key="frame" x="99" y="537" width="177" height="30"/>
+                                <state key="normal" title="Play with AVQueueLooper"/>
+                                <connections>
+                                    <segue destination="vcq-sw-dAi" kind="show" identifier="QueueLooper" id="R0j-7Q-mkW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Agu-WV-ZEf">
+                                <rect key="frame" x="100.5" y="587" width="174" height="30"/>
+                                <state key="normal" title="Play with AVPlayerLooper"/>
+                                <connections>
+                                    <segue destination="vcq-sw-dAi" kind="show" identifier="PlayerLooper" id="RQZ-fV-QwP"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single Item" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUQ-7K-amT">
+                                <rect key="frame" x="137" y="437" width="101" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ofe-ag-8tU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STV-Lc-fhD">
+                                <rect key="frame" x="130" y="487" width="115" height="30"/>
+                                <state key="normal" title="Play with Normal"/>
+                                <connections>
+                                    <segue destination="vcq-sw-dAi" kind="show" identifier="NormalLooper" id="MFV-od-08l"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="G3i-HM-aia" firstAttribute="leading" secondItem="KuO-mX-pyr" secondAttribute="leading" id="2Dk-tp-ZoP"/>
+                            <constraint firstItem="STV-Lc-fhD" firstAttribute="centerX" secondItem="y0x-ua-5br" secondAttribute="centerX" id="3Dx-Of-Cut"/>
+                            <constraint firstItem="y0x-ua-5br" firstAttribute="top" secondItem="STV-Lc-fhD" secondAttribute="bottom" constant="20" id="9Dc-oJ-ePE"/>
+                            <constraint firstItem="Agu-WV-ZEf" firstAttribute="centerX" secondItem="xp5-Jz-IIi" secondAttribute="centerX" id="BOt-Ze-kth"/>
+                            <constraint firstItem="G3i-HM-aia" firstAttribute="trailing" secondItem="KuO-mX-pyr" secondAttribute="trailing" id="Bre-sB-97j"/>
+                            <constraint firstItem="KuO-mX-pyr" firstAttribute="bottom" secondItem="Agu-WV-ZEf" secondAttribute="bottom" constant="50" id="Cic-Hc-8Ib"/>
+                            <constraint firstItem="KuO-mX-pyr" firstAttribute="trailing" secondItem="HIq-4J-Nb1" secondAttribute="trailing" id="EKr-No-2D8"/>
+                            <constraint firstItem="0aQ-Ld-FrZ" firstAttribute="leading" secondItem="KuO-mX-pyr" secondAttribute="leading" id="FUA-ek-yDI"/>
+                            <constraint firstItem="oDT-lC-eGi" firstAttribute="top" secondItem="HIq-4J-Nb1" secondAttribute="bottom" id="GHU-kU-K8E"/>
+                            <constraint firstItem="HIq-4J-Nb1" firstAttribute="leading" secondItem="xp5-Jz-IIi" secondAttribute="leading" id="IcD-Ml-kbz"/>
+                            <constraint firstItem="STV-Lc-fhD" firstAttribute="top" secondItem="dUQ-7K-amT" secondAttribute="bottom" constant="20" id="MQk-eu-AZ6"/>
+                            <constraint firstItem="HIq-4J-Nb1" firstAttribute="top" secondItem="G3i-HM-aia" secondAttribute="bottom" constant="50" id="Tzp-eM-ttF"/>
+                            <constraint firstItem="G3i-HM-aia" firstAttribute="top" secondItem="0aQ-Ld-FrZ" secondAttribute="bottom" id="Wnw-Dk-Ku8"/>
+                            <constraint firstItem="KuO-mX-pyr" firstAttribute="trailing" secondItem="oDT-lC-eGi" secondAttribute="trailing" id="Xfc-Jq-2Vd"/>
+                            <constraint firstItem="dUQ-7K-amT" firstAttribute="centerX" secondItem="STV-Lc-fhD" secondAttribute="centerX" id="Ypb-fa-PYC"/>
+                            <constraint firstItem="y0x-ua-5br" firstAttribute="centerX" secondItem="Agu-WV-ZEf" secondAttribute="centerX" id="lN5-mc-ZN8"/>
+                            <constraint firstItem="KuO-mX-pyr" firstAttribute="trailing" secondItem="0aQ-Ld-FrZ" secondAttribute="trailing" id="mNz-Y3-ZTN"/>
+                            <constraint firstItem="Agu-WV-ZEf" firstAttribute="top" secondItem="y0x-ua-5br" secondAttribute="bottom" constant="20" id="mV1-7Y-c68"/>
+                            <constraint firstItem="0aQ-Ld-FrZ" firstAttribute="top" secondItem="KuO-mX-pyr" secondAttribute="top" constant="20" id="ow9-x7-yxE"/>
+                            <constraint firstItem="oDT-lC-eGi" firstAttribute="leading" secondItem="xp5-Jz-IIi" secondAttribute="leading" id="wJq-Et-Dae"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KuO-mX-pyr"/>
+                    </view>
+                    <connections>
+                        <outlet property="countPickerView" destination="oDT-lC-eGi" id="7oh-3J-KDh"/>
+                        <outlet property="filePickerView" destination="G3i-HM-aia" id="pcf-XR-KWD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SbC-YJ-max" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2972" y="3554.5727136431788"/>
+        </scene>
+        <!--Loop Controller-->
+        <scene sceneID="13q-8z-aG6">
+            <objects>
+                <viewController id="vcq-sw-dAi" customClass="LoopController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="USg-WF-14b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="f1a-oS-bbg"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2AR-Wp-zeD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3797" y="3551"/>
+        </scene>
     </scenes>
     <resources>
         <image name="playback_back" width="32" height="32"/>
         <image name="playback_forward" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="MFV-od-08l"/>
+    </inferredMetricsTieBreakers>
 </document>

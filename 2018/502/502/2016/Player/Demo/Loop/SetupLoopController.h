@@ -1,8 +1,8 @@
 //
-//  AVPlayerView.h
-//  Test_Demo
+//  LoopController.h
+//  502
 //
-//  Created by 许毓方 on 2018/9/29.
+//  Created by 许毓方 on 2018/10/15.
 //  Copyright © 2018 SN. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AVPlayerView : UIView
+@interface SetupLoopController : UIViewController
 
 @end
 

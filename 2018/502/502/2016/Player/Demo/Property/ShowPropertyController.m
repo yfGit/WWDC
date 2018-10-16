@@ -92,7 +92,7 @@
     
 //    [self observeStatus];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleDeviceOrientationChange:)
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDeviceOrientationChange:)
                                                 name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
@@ -140,7 +140,7 @@
      因为 -viewWillLayoutSubviews  旋转没有动画, 用View容器
      */
 //    https://gamevideo.wmupd.com/dota2media/media/cover0829.mp4
-    // http://www.w3school.com.cn/example/html5/mov_bbb.mp4
+//    http://www.w3school.com.cn/example/html5/mov_bbb.mp4
     NSURL *url = [NSURL URLWithString:@"https://gamevideo.wmupd.com/dota2media/media/cover0829.mp4"];
     AVAsset *asset = [AVAsset assetWithURL:url];
     AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];

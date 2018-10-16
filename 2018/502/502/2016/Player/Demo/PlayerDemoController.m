@@ -7,7 +7,7 @@
 //
 
 #import "PlayerDemoController.h"
-#import "AVPlayerView.h"
+#import "AVPlayerView_Code.h"
 @import AVFoundation;
 
 @interface PlayerDemoController ()

@@ -22,9 +22,16 @@
 		BFD06036216D98DD00284432 /* AVPController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD06025216D98DD00284432 /* AVPController.m */; };
 		BFD06037216D98DD00284432 /* PlayerDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD06027216D98DD00284432 /* PlayerDemoController.m */; };
 		BFD06039216D98DD00284432 /* ShowPropertyController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD06029216D98DD00284432 /* ShowPropertyController.m */; };
-		BFD0603A216D98DD00284432 /* AVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD0602B216D98DD00284432 /* AVPlayerView.m */; };
+		BFD0603A216D98DD00284432 /* AVPlayerView_Code.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD0602B216D98DD00284432 /* AVPlayerView_Code.m */; };
 		BFD0603C216D98DD00284432 /* ToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD06030216D98DD00284432 /* ToolView.m */; };
 		BFD0603D216D98DD00284432 /* AVPlayerView_Xib.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD06032216D98DD00284432 /* AVPlayerView_Xib.m */; };
+		BFD0604921748B1200284432 /* SetupLoopController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD0604821748B1200284432 /* SetupLoopController.m */; };
+		BFD0604C21748BE700284432 /* LoopController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD0604B21748BE700284432 /* LoopController.m */; };
+		BFD0605621748D0300284432 /* ChoppedBipBop.m4v in Resources */ = {isa = PBXBuildFile; fileRef = BFD0605421748D0300284432 /* ChoppedBipBop.m4v */; };
+		BFD0605721748D0300284432 /* maskOff.mov in Resources */ = {isa = PBXBuildFile; fileRef = BFD0605521748D0300284432 /* maskOff.mov */; };
+		BFD0605F2174977300284432 /* QueueLooper.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD0605E2174977300284432 /* QueueLooper.m */; };
+		BFD060622174978500284432 /* PlayerLooper.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD060612174978500284432 /* PlayerLooper.m */; };
+		BFD060652174979900284432 /* NormalLooper.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD060642174979900284432 /* NormalLooper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,13 +73,26 @@
 		BFD06027216D98DD00284432 /* PlayerDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerDemoController.m; sourceTree = "<group>"; };
 		BFD06029216D98DD00284432 /* ShowPropertyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPropertyController.m; sourceTree = "<group>"; };
 		BFD0602A216D98DD00284432 /* AVPlayerView_Xib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerView_Xib.h; sourceTree = "<group>"; };
-		BFD0602B216D98DD00284432 /* AVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerView.m; sourceTree = "<group>"; };
+		BFD0602B216D98DD00284432 /* AVPlayerView_Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerView_Code.m; sourceTree = "<group>"; };
 		BFD0602C216D98DD00284432 /* ToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolView.h; sourceTree = "<group>"; };
 		BFD0602D216D98DD00284432 /* PlayerDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerDemoController.h; sourceTree = "<group>"; };
 		BFD0602E216D98DD00284432 /* ShowPropertyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPropertyController.h; sourceTree = "<group>"; };
 		BFD06030216D98DD00284432 /* ToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolView.m; sourceTree = "<group>"; };
-		BFD06031216D98DD00284432 /* AVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerView.h; sourceTree = "<group>"; };
+		BFD06031216D98DD00284432 /* AVPlayerView_Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerView_Code.h; sourceTree = "<group>"; };
 		BFD06032216D98DD00284432 /* AVPlayerView_Xib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerView_Xib.m; sourceTree = "<group>"; };
+		BFD0604721748B1200284432 /* SetupLoopController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetupLoopController.h; sourceTree = "<group>"; };
+		BFD0604821748B1200284432 /* SetupLoopController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetupLoopController.m; sourceTree = "<group>"; };
+		BFD0604A21748BE700284432 /* LoopController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoopController.h; sourceTree = "<group>"; };
+		BFD0604B21748BE700284432 /* LoopController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoopController.m; sourceTree = "<group>"; };
+		BFD0605421748D0300284432 /* ChoppedBipBop.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChoppedBipBop.m4v; sourceTree = "<group>"; };
+		BFD0605521748D0300284432 /* maskOff.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = maskOff.mov; sourceTree = "<group>"; };
+		BFD0605C2174940200284432 /* Looper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Looper.h; sourceTree = "<group>"; };
+		BFD0605D2174977300284432 /* QueueLooper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueueLooper.h; sourceTree = "<group>"; };
+		BFD0605E2174977300284432 /* QueueLooper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueueLooper.m; sourceTree = "<group>"; };
+		BFD060602174978500284432 /* PlayerLooper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerLooper.h; sourceTree = "<group>"; };
+		BFD060612174978500284432 /* PlayerLooper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerLooper.m; sourceTree = "<group>"; };
+		BFD060632174979900284432 /* NormalLooper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NormalLooper.h; sourceTree = "<group>"; };
+		BFD060642174979900284432 /* NormalLooper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalLooper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,8 +242,8 @@
 				BFD0604621746A6000284432 /* Loop */,
 				BFD0602C216D98DD00284432 /* ToolView.h */,
 				BFD06030216D98DD00284432 /* ToolView.m */,
-				BFD06031216D98DD00284432 /* AVPlayerView.h */,
-				BFD0602B216D98DD00284432 /* AVPlayerView.m */,
+				BFD06031216D98DD00284432 /* AVPlayerView_Code.h */,
+				BFD0602B216D98DD00284432 /* AVPlayerView_Code.m */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -242,8 +262,29 @@
 		BFD0604621746A6000284432 /* Loop */ = {
 			isa = PBXGroup;
 			children = (
+				BFD0604D21748CAF00284432 /* Media */,
+				BFD0604721748B1200284432 /* SetupLoopController.h */,
+				BFD0604821748B1200284432 /* SetupLoopController.m */,
+				BFD0604A21748BE700284432 /* LoopController.h */,
+				BFD0604B21748BE700284432 /* LoopController.m */,
+				BFD0605C2174940200284432 /* Looper.h */,
+				BFD060632174979900284432 /* NormalLooper.h */,
+				BFD060642174979900284432 /* NormalLooper.m */,
+				BFD0605D2174977300284432 /* QueueLooper.h */,
+				BFD0605E2174977300284432 /* QueueLooper.m */,
+				BFD060602174978500284432 /* PlayerLooper.h */,
+				BFD060612174978500284432 /* PlayerLooper.m */,
 			);
 			path = Loop;
+			sourceTree = "<group>";
+		};
+		BFD0604D21748CAF00284432 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				BFD0605421748D0300284432 /* ChoppedBipBop.m4v */,
+				BFD0605521748D0300284432 /* maskOff.mov */,
+			);
+			path = Media;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,8 +368,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFD05FF9216D91BD00284432 /* LaunchScreen.storyboard in Resources */,
+				BFD0605621748D0300284432 /* ChoppedBipBop.m4v in Resources */,
 				BFD05FF6216D91BD00284432 /* Assets.xcassets in Resources */,
 				BFD05FF4216D91BB00284432 /* Main.storyboard in Resources */,
+				BFD0605721748D0300284432 /* maskOff.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,17 +392,22 @@
 				BFD06017216D970A00284432 /* YYWeakProxy.m in Sources */,
 				BFD06018216D970A00284432 /* YYFPSLabel.m in Sources */,
 				BFD06035216D98DD00284432 /* MPController.m in Sources */,
+				BFD0605F2174977300284432 /* QueueLooper.m in Sources */,
 				BFD05FF1216D91BB00284432 /* ViewController.m in Sources */,
 				BFD0603D216D98DD00284432 /* AVPlayerView_Xib.m in Sources */,
-				BFD0603A216D98DD00284432 /* AVPlayerView.m in Sources */,
+				BFD0603A216D98DD00284432 /* AVPlayerView_Code.m in Sources */,
 				BFD06039216D98DD00284432 /* ShowPropertyController.m in Sources */,
 				BFD05FFC216D91BD00284432 /* main.m in Sources */,
 				BFD05FEE216D91BB00284432 /* AppDelegate.m in Sources */,
+				BFD0604C21748BE700284432 /* LoopController.m in Sources */,
 				BFD0603C216D98DD00284432 /* ToolView.m in Sources */,
 				BFD06036216D98DD00284432 /* AVPController.m in Sources */,
 				BFD06034216D98DD00284432 /* AVPlayerControllers.m in Sources */,
+				BFD060652174979900284432 /* NormalLooper.m in Sources */,
+				BFD0604921748B1200284432 /* SetupLoopController.m in Sources */,
 				BFD06037216D98DD00284432 /* PlayerDemoController.m in Sources */,
 				BFD06033216D98DD00284432 /* MPViewControllers.m in Sources */,
+				BFD060622174978500284432 /* PlayerLooper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -55,7 +55,7 @@
 
 - (void)dealloc {
     [_link invalidate];
-    NSLog(@"timer release");
+//    NSLog(@"timer release");
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {

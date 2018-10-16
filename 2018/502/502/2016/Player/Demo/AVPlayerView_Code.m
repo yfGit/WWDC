@@ -6,10 +6,10 @@
 //  Copyright © 2018 SN. All rights reserved.
 //
 
-#import "AVPlayerView.h"
+#import "AVPlayerView_Code.h"
 @import AVFoundation;
 
-@implementation AVPlayerView
+@implementation AVPlayerView_Code
 
 + (Class)layerClass {
     return [AVPlayerLayer class];
