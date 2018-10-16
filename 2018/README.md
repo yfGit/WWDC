@@ -30,9 +30,13 @@ Graphics and Games
 
 Media
 
-* 520: Measuring and Optimizing HLS Performance
-  * 503 WWDC 2016: Advances in AVFoundation Playback
+* 503 WWDC 2016: Advances in AVFoundation Playback
+  * 属性监听, 基本播放
+  * 循环播放
+  * HLS 提速
 
+* 520: Measuring and Optimizing HLS Performance
+  
 ## Without Demo
 
 App Store and Distribution
